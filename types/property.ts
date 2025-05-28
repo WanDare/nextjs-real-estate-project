@@ -1,5 +1,32 @@
-import { z } from "zod";
-import { propertySchema, addPropertySchema } from "@/schemas/property";
-
-export type Property = z.infer<typeof propertySchema>; // Full property type
-export type AddProperty = z.infer<typeof addPropertySchema>; // Add property type
+// You can move this to a separate file (e.g., types/property.ts) if you prefer!
+export type Property = {
+  imageUrl: string;
+  title: string;
+  isForSale: boolean;
+  location: string;
+  price: number;
+  bedrooms: number;
+  bathrooms: number;
+  sqft: number;
+  propertyType: string;
+  description: string;
+  LotSize: number;
+  HOADues: number;
+  YearBuilt: number;
+  GarageSqFt: number;
+  BasementSqFt: number;
+  basement: string;
+  architecturalStyle: string;
+  floorCovering: string[];
+  coolingType: string[];
+  heatingType: string[];
+  heatingFuel: string[];
+  rooms: string[];
+  indoorFeatures: string[];
+  buildingAmenities: string[];
+  exterior: string[];
+  outdoorAmenities: string[];
+  parking: string[];
+  roof: string[];
+  view: string[];
+};

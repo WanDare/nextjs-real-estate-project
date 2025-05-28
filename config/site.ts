@@ -14,7 +14,7 @@ export const siteConfig = {
     },
     {
       label: "Sell",
-      href: "/Properties",
+      href: "/Sell",
     },
     {
       label: "Rent",
@@ -24,19 +24,19 @@ export const siteConfig = {
       label: "Admin Dashboard",
       href: "/admin",
       auth: true,
-      adminOnly: true
+      adminOnly: true,
     },
     {
       label: "My Dashboard",
       href: "/dashboard",
       auth: true,
-      userOnly: true
+      userOnly: true,
     },
-    {
-      label: "Login",
-      href: "/login",
-      auth: false
-    },
+    // {
+    //   label: "Login",
+    //   href: "/login",
+    //   auth: false
+    // },
   ],
   navMenuItems: [
     {
@@ -47,13 +47,13 @@ export const siteConfig = {
       label: "Admin Dashboard",
       href: "/admin",
       auth: true,
-      adminOnly: true
+      adminOnly: true,
     },
     {
       label: "My Dashboard",
       href: "/dashboard",
       auth: true,
-      userOnly: true
+      userOnly: true,
     },
     {
       label: "Properties",
@@ -78,7 +78,7 @@ export const siteConfig = {
     {
       label: "login",
       href: "/login",
-      auth: false
+      auth: false,
     },
   ],
   links: {

@@ -57,12 +57,13 @@ export default function LoginForm() {
       <div className="flex-grow flex flex-col justify-center max-w-md mx-auto w-full">
         <div>
           <h3 className="text-3xl font-bold">Welcome Back</h3>
-          <p className="text-sm mt-3">
-            👋 Login to your account
-          </p>
+          <p className="text-sm mt-3">👋 Login to your account</p>
           <div className="mt-10">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
                 <FormField
                   control={form.control}
                   name="email"
@@ -70,7 +71,11 @@ export default function LoginForm() {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder="Enter email" type="email" />
+                        <Input
+                          {...field}
+                          placeholder="Enter email"
+                          type="email"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -84,7 +89,11 @@ export default function LoginForm() {
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder="Enter password" type="password" />
+                        <Input
+                          {...field}
+                          placeholder="Enter password"
+                          type="password"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -107,7 +116,7 @@ export default function LoginForm() {
             Register Here
           </Link>
         </p>
-        <p className="text-sm">
+        {/* <p className="text-sm">
           Are you an admin?{" "}
           <Link href="/admin/login" className="text-blue-600 hover:underline">
             Login to Admin Panel
@@ -118,7 +127,7 @@ export default function LoginForm() {
           <Link href="/admin/register" className="text-blue-600 hover:underline">
             Register as Admin
           </Link>
-        </p>
+        </p> */}
       </div>
     </div>
   );

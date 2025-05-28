@@ -3,34 +3,52 @@
 import { RegisterSchema } from "@/types/register-schema";
 import { actionClient } from "@/lib/safe-action";
 import bcrypt from "bcryptjs";
-import { db } from "../db";
-import { eq } from "drizzle-orm";
-import { users } from "../schema";
+
+// In-memory array to simulate a user database (cleared on each server restart)
+const staticUsers: {
+  email: string;
+  passwordHash: string;
+  firstName: string;
+  lastName: string;
+  location: string;
+  role: string;
+  skillLevel: string;
+}[] = [];
 
 export const RegisterAccount = actionClient
   .schema(RegisterSchema)
   .action(
-    async ({ parsedInput: { email, password, lastName, firstName, location, role, skillLevel } }) => {
-      const hashedPassword = await bcrypt.hash(password, 10)
-
-      const existingUser = await db.query.users.findFirst({
-        where: eq(users.email, email),
-      })
-
+    async ({
+      parsedInput: {
+        email,
+        password,
+        lastName,
+        firstName,
+        location,
+        role,
+        skillLevel,
+      },
+    }) => {
+      const existingUser = staticUsers.find((user) => user.email === email);
       if (existingUser) {
-        return {error: "Looks like you already have an account. Please log in."};
+        return {
+          error: "Looks like you already have an account. Please log in.",
+        };
       }
 
-      await db.insert(users).values({
-        firstName: firstName,
-        lastName: lastName,
-        location: location,
-        email: email,
-        password: hashedPassword,
-        role: role,
-        skillLevel: skillLevel,
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Add user to static array
+      staticUsers.push({
+        email,
+        passwordHash: hashedPassword,
+        firstName,
+        lastName,
+        location,
+        role,
+        skillLevel,
       });
 
-      return {success: "Account created successfully"}
+      return { success: "Account created successfully" };
     }
-  )
+  );
