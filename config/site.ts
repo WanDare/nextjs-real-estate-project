@@ -18,7 +18,7 @@ export const siteConfig = {
     },
     {
       label: "Rent",
-      href: "/Properties",
+      href: "/Rent",
     },
     {
       label: "Admin Dashboard",

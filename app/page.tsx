@@ -46,7 +46,10 @@ export default async function Home() {
             <span className={title()}>Search properties for sale in&nbsp;</span>
             <span className={title()}>
               &nbsp;
-              <span className={title({ color: "violet" })}> USA&nbsp;</span>
+              <span className={title({ color: "violet" })}>
+                {" "}
+                CAMBODIA&nbsp;
+              </span>
             </span>
             <div className={subtitle({ class: "mt-4 text-white" })}>
               {/* Beautiful, fast, and modern React UI l */}

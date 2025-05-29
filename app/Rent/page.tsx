@@ -15,31 +15,33 @@ import {
   Button,
   Chip,
 } from "@nextui-org/react";
-import { HeartIcon } from "./icons/HeartIcon";
+import { HeartIcon } from "../Properties/icons/HeartIcon";
 import { Spinner } from "@heroui/react";
 import { useRouter } from "next/navigation";
-import { ChevronIcon } from "./icons/ChevronIcon";
+import { ChevronIcon } from "../Properties/icons/ChevronIcon";
 import { SearchIcon } from "@/app/Properties/icons/SearchIcon";
 import Forsale from "../Properties/components/FiltersButtons/Forsale";
-import { mockProperties, Property } from "./mockProperties";
+import { mockProperties } from "../Properties/mockProperties";
 
 // Helper to format price with commas
 function formatPrice(price: number) {
   return price.toLocaleString("en-US");
 }
 
-export default function Hero() {
+export default function RentPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading] = useState(false);
   const router = useRouter();
 
-  // Filter directly from mockProperties
-  const filteredProperties = mockProperties.filter(
-    (property) =>
-      property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      property.location.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter for rent properties only
+  const filteredProperties = mockProperties
+    .filter((property) => !property.isForSale)
+    .filter(
+      (property) =>
+        property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        property.location.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
   const propertiesToShow = filteredProperties.slice(
     (currentPage - 1) * 10,
@@ -104,7 +106,7 @@ export default function Hero() {
           <Input
             isClearable
             radius="lg"
-            placeholder="Search by province, district, or address"
+            placeholder="Search rentals by province, district, or address"
             className="w-full md:w-96"
             startContent={
               <SearchIcon className="pointer-events-none flex-shrink-0" />
@@ -123,10 +125,10 @@ export default function Hero() {
             className="relative cursor-pointer group"
             tabIndex={0}
             role="button"
-            onClick={() => router.push(`/Properties/${property.id}`)}
+            onClick={() => router.push(`/Rent/${property.id}`)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
-                router.push(`/Properties/${property.id}`);
+                router.push(`/Rent/${property.id}`);
               }
             }}
           >
@@ -162,7 +164,10 @@ export default function Hero() {
               </Button>
               <CardBody className="overflow-visible p-3">
                 <p className="text-xl text-start">
-                  USD {formatPrice(property.price)}
+                  USD {formatPrice(property.price)}{" "}
+                  <span className="text-sm font-normal text-gray-500">
+                    / month
+                  </span>
                 </p>
                 <p className="p-2 text-sm text-start">
                   {property.bedrooms} bed, {property.bathrooms} bath,{" "}
@@ -173,9 +178,7 @@ export default function Hero() {
                 </b>
               </CardBody>
               <CardFooter className="text-small justify-between flex items-center">
-                <b className="text-xs text-start text-default-500">
-                  For Sale: {property.isForSale ? "Yes" : "No"}
-                </b>
+                <b className="text-xs text-start text-default-500">For Rent</b>
                 <Button
                   size="sm"
                   color="primary"

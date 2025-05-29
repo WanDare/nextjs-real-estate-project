@@ -1,5 +1,8 @@
 // You can move this to a separate file (e.g., types/property.ts) if you prefer!
 export type Property = {
+  availableDate: string;
+  deposit: number;
+  leaseTerm: string;
   imageUrl: string;
   title: string;
   isForSale: boolean;
