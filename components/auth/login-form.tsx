@@ -17,6 +17,12 @@ import { Button } from "@/components/ui/button";
 import { LoginSchema } from "@/types/login-schema";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+
+const DUMMY_USER = {
+  email: "demo@example.com",
+  password: "password123",
+};
 
 const LoginForm = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -28,22 +34,24 @@ const LoginForm = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setLoading(true);
 
-    // Static fake login check
-    const dummyUser = {
-      email: "demo@example.com",
-      password: "password123",
-    };
-
     setTimeout(() => {
       if (
-        values.email === dummyUser.email &&
-        values.password === dummyUser.password
+        values.email === DUMMY_USER.email &&
+        values.password === DUMMY_USER.password
       ) {
         toast.success("Login successful!");
+        // Here you could call a context or set localStorage for a demo session
+        router.back();
+        setTimeout(() => {
+          if (window.location.pathname === "/login") {
+            router.push("/");
+          }
+        }, 400);
       } else {
         toast.error("Invalid email or password.");
       }
@@ -111,6 +119,15 @@ const LoginForm = () => {
           Home
         </Link>
       </p>
+      {/* For demo/testing, show hint */}
+      <div className="mt-6 bg-blue-50 text-blue-800 rounded p-2 text-xs text-center">
+        <div>
+          Demo user: <b>{DUMMY_USER.email}</b>
+        </div>
+        <div>
+          Password: <b>{DUMMY_USER.password}</b>
+        </div>
+      </div>
     </div>
   );
 };

@@ -113,7 +113,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
               <h3 className="text-xl font-bold">
                 {property.sqft.toLocaleString()}
               </h3>
-              <p>Sq Ft</p>
+              <p>m²</p>
             </div>
           </div>
 
@@ -129,7 +129,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
             </div>
             <div className="flex items-center gap-2">
               <Ruler />
-              <p>{property.LotSize} sqft lot</p>
+              <p>{property.LotSize} m²</p>
             </div>
             <div className="flex items-center gap-2">
               <Ruler />

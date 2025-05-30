@@ -1,17 +1,24 @@
 "use client";
 
-import PropertyFilter from "@/components/PropertyFilter"
-import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import PropertyFilter from "@/components/PropertyFilter";
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import PriceFilter from "@/components/pricefilter"
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import PriceFilter from "@/components/pricefilter";
 import { useState, useEffect, useRef } from "react";
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { MailOpen } from "lucide-react";
-
-
 
 export default function PropertySearchBar() {
   // Fix SSR hydration issues
@@ -25,7 +32,16 @@ export default function PropertySearchBar() {
   const priceDropdownRef = useRef<HTMLDivElement | null>(null);
 
   const priceOptions = [
-    "No Min", "$0", "$200", "$400", "$600", "$800", "$1,000", "$2,000", "$5,000", "$10,000",
+    "No Min",
+    "$0",
+    "$200",
+    "$400",
+    "$600",
+    "$800",
+    "$1,000",
+    "$2,000",
+    "$5,000",
+    "$10,000",
   ];
 
   useEffect(() => {
@@ -45,7 +61,10 @@ export default function PropertySearchBar() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (priceDropdownRef.current && !priceDropdownRef.current.contains(event.target as Node)) {
+      if (
+        priceDropdownRef.current &&
+        !priceDropdownRef.current.contains(event.target as Node)
+      ) {
         setIsPriceOpen(false);
       }
     };
@@ -58,11 +77,12 @@ export default function PropertySearchBar() {
 
   return (
     <div className="w-full px-4 py-2 flex flex-wrap md:flex-nowrap items-center justify-center gap-3 md:gap-2">
-
       {/* Beds & Baths and Home Type moved to "More" dropdown for Medium Screens */}
       {!isMediumScreen && (
         <>
-          <Button variant="link">Find an Agent</Button>
+          <Button variant="link" asChild>
+            <a href="/Sell">Find an Agent</a>
+          </Button>
           <Button variant="link">Home Loans</Button>
           <Popover>
             <PopoverTrigger asChild>
@@ -73,18 +93,38 @@ export default function PropertySearchBar() {
                 <div className=" p-2 overflow-hidden  w-full ">
                   <h3 className="font-semibold ">Bedrooms</h3>
                   <div className=" mt-4  flex items-center">
-                    <CheckboxWithLabel label="1+ Beds" tooltip="Properties coming to market soon." />
-                    <CheckboxWithLabel label="2+ Beds" tooltip="Properties accepting secondary offers." />
-                    <CheckboxWithLabel label="3+ Beds" tooltip="Homes that have pending deals." />
+                    <CheckboxWithLabel
+                      label="1+ Beds"
+                      tooltip="Properties coming to market soon."
+                    />
+                    <CheckboxWithLabel
+                      label="2+ Beds"
+                      tooltip="Properties accepting secondary offers."
+                    />
+                    <CheckboxWithLabel
+                      label="3+ Beds"
+                      tooltip="Homes that have pending deals."
+                    />
                   </div>
                   <h3 className="font-semibold mt-4 ">Bathrooms</h3>
                   <div className=" mt-4 flex items-center">
-                    <CheckboxWithLabel label="1+ Bath" tooltip="Properties coming to market soon." />
-                    <CheckboxWithLabel label="2+ Bath" tooltip="Properties accepting secondary offers." />
-                    <CheckboxWithLabel label="3+ Bath" tooltip="Homes that have pending deals." />
+                    <CheckboxWithLabel
+                      label="1+ Bath"
+                      tooltip="Properties coming to market soon."
+                    />
+                    <CheckboxWithLabel
+                      label="2+ Bath"
+                      tooltip="Properties accepting secondary offers."
+                    />
+                    <CheckboxWithLabel
+                      label="3+ Bath"
+                      tooltip="Homes that have pending deals."
+                    />
                   </div>
                 </div>
-                <Button className="bg-blue-600 mt-4 w-full" variant="outline">apply</Button>
+                <Button className="bg-blue-600 mt-4 w-full" variant="outline">
+                  apply
+                </Button>
               </TooltipProvider>
             </PopoverContent>
           </Popover>
@@ -98,18 +138,28 @@ export default function PropertySearchBar() {
                 <div className=" p-2  w-full ">
                   <h3 className="font-semibold ">Home Type</h3>
                   <div className="space-y-2 mt-2">
-                    <CheckboxWithLabel label="apartment" tooltip="Properties coming to market soon." />
-                    <CheckboxWithLabel label="houses" tooltip="Properties accepting secondary offers." />
-                    <CheckboxWithLabel label="condo" tooltip="Homes that have pending deals." />
+                    <CheckboxWithLabel
+                      label="apartment"
+                      tooltip="Properties coming to market soon."
+                    />
+                    <CheckboxWithLabel
+                      label="houses"
+                      tooltip="Properties accepting secondary offers."
+                    />
+                    <CheckboxWithLabel
+                      label="condo"
+                      tooltip="Homes that have pending deals."
+                    />
                   </div>
                 </div>
-                <Button className="bg-blue-600 w-full" variant="outline">apply</Button>
+                <Button className="bg-blue-600 w-full" variant="outline">
+                  apply
+                </Button>
               </TooltipProvider>
             </PopoverContent>
           </Popover>
 
-
-          <Popover>
+          {/* <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline">For Sale</Button>
             </PopoverTrigger>
@@ -137,16 +187,21 @@ export default function PropertySearchBar() {
                 <Button className="bg-blue-600 w-full" variant="outline">apply</Button>
               </TooltipProvider>
             </PopoverContent>
-          </Popover>
+          </Popover> */}
         </>
       )}
 
       <div className="flex gap-3 ">
-        <PriceFilter minPrice={""} setMinPrice={function (value: string): void {
-          throw new Error("Function not implemented.");
-        }} maxPrice={""} setMaxPrice={function (value: string): void {
-          throw new Error("Function not implemented.");
-        }} />
+        <PriceFilter
+          minPrice={""}
+          setMinPrice={function (value: string): void {
+            throw new Error("Function not implemented.");
+          }}
+          maxPrice={""}
+          setMaxPrice={function (value: string): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
         <PropertyFilter />
         {/* Save Search Button */}
         <Button color="primary">Save Search</Button>
@@ -154,16 +209,18 @@ export default function PropertySearchBar() {
           <MailOpen />
         </div>
       </div>
-
     </div>
-
   );
 }
 
-
-
 // Reusable Checkbox with Label & Optional Tooltip
-const CheckboxWithLabel = ({ label, tooltip }: { label: string; tooltip?: string }) => (
+const CheckboxWithLabel = ({
+  label,
+  tooltip,
+}: {
+  label: string;
+  tooltip?: string;
+}) => (
   <div className="flex items-center gap-2">
     <Checkbox id={label} />
     <label htmlFor={label} className="text-sm ">

@@ -166,7 +166,7 @@ export default function Hero() {
                 </p>
                 <p className="p-2 text-sm text-start">
                   {property.bedrooms} bed, {property.bathrooms} bath,{" "}
-                  {property.sqft} SQ FT
+                  {property.sqft} m²
                 </p>
                 <b className="p-1 text-md text-default-500">
                   {property.location}

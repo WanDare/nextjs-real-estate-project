@@ -214,25 +214,37 @@ export default function SellPage() {
                   isInvalid={!!errors.askingPrice}
                   errorMessage={errors.askingPrice}
                 />
-                <Select
-                  label="Property Type"
-                  placeholder="Select property type"
-                  selectedKeys={
-                    form.propertyType ? [form.propertyType] : undefined
-                  }
-                  onChange={(e) =>
-                    handleSelectChange("propertyType", e.target.value)
-                  }
-                  isInvalid={!!errors.propertyType}
-                  errorMessage={errors.propertyType}
-                  name="propertyType"
-                >
-                  {propertyTypes.map((type) => (
-                    <SelectItem key={type.key} value={type.key}>
-                      {type.label}
-                    </SelectItem>
-                  ))}
-                </Select>
+                <div className="flex flex-col ">
+                  <label
+                    htmlFor="propertyType"
+                    className="text-sm font-medium text-gray-700"
+                  >
+                    Property Type
+                  </label>
+                  <Select
+                    id="propertyType"
+                    placeholder="Select property type"
+                    selectedKeys={
+                      form.propertyType
+                        ? new Set([form.propertyType])
+                        : undefined
+                    }
+                    onChange={(e) =>
+                      handleSelectChange("propertyType", e.target.value)
+                    }
+                    isInvalid={!!errors.propertyType}
+                    errorMessage={errors.propertyType}
+                    name="propertyType"
+                    className="w-full"
+                  >
+                    {propertyTypes.map((type) => (
+                      <SelectItem key={type.key} value={type.key}>
+                        {type.label}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                </div>
+
                 <Input
                   name="bedrooms"
                   label="Bedrooms"

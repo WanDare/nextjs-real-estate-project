@@ -15,38 +15,6 @@ import { Property } from "@/types/property";
 type PropertyDetailsProps = {
   property: Property;
 };
-const staticProperty = {
-  imageUrl: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
-  title: "Beautiful Family Home",
-  isForSale: true,
-  location: "123 Main St, Austin, TX",
-  price: 450000,
-  bedrooms: 4,
-  bathrooms: 3,
-  sqft: 2100,
-  propertyType: "Single Family",
-  description:
-    "This stunning 4-bedroom family home features modern amenities and a spacious backyard perfect for gatherings. Enjoy open-concept living, granite countertops, and walkable neighborhood parks.",
-  LotSize: 7000,
-  HOADues: 200,
-  YearBuilt: 2010,
-  GarageSqFt: 500,
-  BasementSqFt: 600,
-  basement: "Finished",
-  architecturalStyle: "Modern",
-  floorCovering: ["Hardwood", "Tile"],
-  coolingType: ["Central Air"],
-  heatingType: ["Forced Air"],
-  heatingFuel: ["Gas"],
-  rooms: ["Living Room", "Dining Room", "Kitchen", "Master Suite"],
-  indoorFeatures: ["Fireplace", "Walk-In Closet"],
-  buildingAmenities: ["Gym", "Community Pool"],
-  exterior: ["Brick", "Stucco"],
-  outdoorAmenities: ["Patio", "Backyard"],
-  parking: ["2 Car Garage", "Driveway"],
-  roof: ["Shingle"],
-  view: ["Park View"],
-};
 
 export default function PropertyDetails({ property }: PropertyDetailsProps) {
   const [showMore, setShowMore] = useState(false);
@@ -156,7 +124,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
               <h3 className="text-xl font-bold ">
                 {property.sqft.toLocaleString()}
               </h3>
-              <p className="">Sq Ft</p>
+              <p className="">m²</p>
             </div>
           </div>
 
@@ -178,7 +146,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
               <span className=" w-6 h-6  rounded-full flex items-center justify-center">
                 <Ruler />
               </span>
-              <p>{property.LotSize} sqft lot</p>
+              <p>{property.LotSize} m²</p>
             </div>
             <div className="flex items-center gap-2">
               <span className=" w-6 h-6  rounded-full flex items-center justify-center">
@@ -199,19 +167,20 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
           <section className="border-t border-b   border-gray-300">
             <h2 className="text-xl font-bold  py-6 ">What's special</h2>
             <div className="flex gap-2 p-2 text-black">
-              <p className="bg-[#F1F1F4] rounded-sm  p-1" p-2>
+              <p className="bg-[#F1F1F4] rounded-sm p-1 px-2">
                 {property.architecturalStyle}
               </p>
-              <p className="bg-[#F1F1F4] rounded-sm p-1" p-2>
+
+              <p className="bg-[#F1F1F4] rounded-sm p-1 px-2">
                 {property.exterior}
               </p>
-              <p className="bg-[#F1F1F4] rounded-sm p-1" p-2>
+              <p className="bg-[#F1F1F4] rounded-sm p-1 px-2">
                 {property.outdoorAmenities}
               </p>
-              <p className="bg-[#F1F1F4] rounded-sm p-1 " p-2>
+              <p className="bg-[#F1F1F4] rounded-sm p-1 px-2">
                 {property.indoorFeatures}
               </p>
-              <p className="bg-[#F1F1F4] rounded-sm p-1" m-10>
+              <p className="bg-[#F1F1F4] rounded-sm p-1 m-10">
                 {property.propertyType}
               </p>
             </div>

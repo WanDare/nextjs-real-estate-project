@@ -40,7 +40,7 @@ export default async function Home() {
         {/* Section with background image and text */}
         <section
           className="w-full h-screen  flex flex-col items-center justify-center gap-4 bg-cover bg-center"
-          style={{ backgroundImage: "url(/assets/images/prop3.webp)" }}
+          style={{ backgroundImage: "url(/assets/images/property15.jpg)" }}
         >
           <div className="inline-block max-w-xl text-center pt-16 text-2xl text-white">
             <span className={title()}>Search properties for sale in&nbsp;</span>

@@ -29,8 +29,7 @@ export const mockProperties: Property[] = [
     bathrooms: 3,
     sqft: 2500,
     location: "Toul Kork, Phnom Penh",
-    imageUrl:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property.jpg",
     isForSale: true,
     description:
       "A beautiful modern villa perfect for families, located in the heart of Toul Kork.",
@@ -51,8 +50,7 @@ export const mockProperties: Property[] = [
     bathrooms: 1,
     sqft: 450,
     location: "BKK1, Phnom Penh",
-    imageUrl:
-      "https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property1.jpg",
     isForSale: true,
     description:
       "Fully furnished studio apartment in Phnom Penh’s expat-friendly district.",
@@ -73,8 +71,7 @@ export const mockProperties: Property[] = [
     bathrooms: 2,
     sqft: 1600,
     location: "Otres Beach, Sihanoukville",
-    imageUrl:
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property2.jpg",
     isForSale: true,
     description:
       "Charming villa with sea view and direct access to Otres Beach.",
@@ -95,8 +92,7 @@ export const mockProperties: Property[] = [
     bathrooms: 2,
     sqft: 850,
     location: "Daun Penh, Phnom Penh",
-    imageUrl:
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property3.jpg",
     isForSale: true,
     description:
       "Modern condo with a city view, close to the riverside and night market.",
@@ -117,8 +113,7 @@ export const mockProperties: Property[] = [
     bathrooms: 1,
     sqft: 900,
     location: "Sala Kamreuk, Siem Reap",
-    imageUrl:
-      "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property4.jpg",
     isForSale: true,
     description:
       "Traditional wooden Khmer house surrounded by nature, minutes from Angkor Wat.",
@@ -138,8 +133,7 @@ export const mockProperties: Property[] = [
     bathrooms: 3,
     sqft: 2100,
     location: "BKK3, Phnom Penh",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property5.jpg",
     isForSale: true,
     description:
       "Exclusive penthouse with panoramic views and private rooftop garden.",
@@ -159,8 +153,7 @@ export const mockProperties: Property[] = [
     bathrooms: 2,
     sqft: 1100,
     location: "Sen Sok, Phnom Penh",
-    imageUrl:
-      "https://images.unsplash.com/photo-1503389152951-9c3d8b6e5a14?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property6.jpg",
     isForSale: true,
     description:
       "Spacious serviced apartment in a quiet neighborhood, ideal for families.",
@@ -180,8 +173,7 @@ export const mockProperties: Property[] = [
     bathrooms: 4,
     sqft: 3200,
     location: "Koh Pich (Diamond Island), Phnom Penh",
-    imageUrl:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property7.jpg",
     isForSale: true,
     description:
       "Stunning luxury villa in the heart of Phnom Penh’s most exclusive area.",
@@ -201,8 +193,7 @@ export const mockProperties: Property[] = [
     bathrooms: 1,
     sqft: 380,
     location: "Kampot Riverside, Kampot",
-    imageUrl:
-      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property8.jpg",
     isForSale: true,
     description:
       "Affordable tiny home ideal for weekend getaways or eco-living.",
@@ -222,8 +213,7 @@ export const mockProperties: Property[] = [
     bathrooms: 5,
     sqft: 5400,
     location: "Battambang City",
-    imageUrl:
-      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property9.jpg",
     isForSale: true,
     description:
       "Historic French colonial mansion with restored interiors and large garden.",
@@ -244,8 +234,7 @@ export const mockProperties: Property[] = [
     bathrooms: 2,
     sqft: 950,
     location: "BKK1, Phnom Penh",
-    imageUrl:
-      "https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property10.jpg",
     isForSale: false, // <-- This makes it for Rent!
     description:
       "Chic apartment with city view, walking distance to shops and restaurants.",
@@ -266,8 +255,7 @@ export const mockProperties: Property[] = [
     bathrooms: 1,
     sqft: 600,
     location: "Toul Tompoung, Phnom Penh",
-    imageUrl:
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property11.jpg",
     isForSale: false,
     description:
       "Fully furnished, ready to move in. Great for singles or couples.",
@@ -287,8 +275,7 @@ export const mockProperties: Property[] = [
     bathrooms: 2,
     sqft: 1200,
     location: "Wat Bo, Siem Reap",
-    imageUrl:
-      "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/images/property12.jpg",
     isForSale: false,
     description: "Quiet location, perfect for long stays and digital nomads.",
     details: "Private yard, motorbike parking, pet friendly.",

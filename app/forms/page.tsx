@@ -43,9 +43,6 @@ type HomeFactsFormData = {
   agreement: boolean;
 };
 
-
-
-
 export default function CombinedForm() {
   const {
     control,
@@ -112,14 +109,21 @@ export default function CombinedForm() {
       {/* Home Facts Section */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="homeType" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="homeType"
+            className="block text-sm font-medium text-gray-700"
+          >
             Home Type
           </label>
           <Controller
             name="homeType"
             control={control}
             render={({ field }) => (
-              <select {...field} id="homeType" className="mt-1 block w-full border rounded p-2">
+              <select
+                {...field}
+                id="homeType"
+                className="mt-1 block w-full border rounded p-2"
+              >
                 <option value="Single family">Single family</option>
                 <option value="Condo">Condo</option>
                 <option value="Townhouse">Townhouse</option>
@@ -130,20 +134,31 @@ export default function CombinedForm() {
         </div>
 
         <div>
-          <label htmlFor="beds" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="beds"
+            className="block text-sm font-medium text-gray-700"
+          >
             Beds
           </label>
           <Controller
             name="beds"
             control={control}
             render={({ field }) => (
-              <input {...field} type="number" id="beds" className="mt-1 block w-full border rounded p-2" />
+              <input
+                {...field}
+                type="number"
+                id="beds"
+                className="mt-1 block w-full border rounded p-2"
+              />
             )}
           />
         </div>
 
         <div>
-          <label htmlFor="fullBaths" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="fullBaths"
+            className="block text-sm font-medium text-gray-700"
+          >
             Full Baths
           </label>
           <Controller
@@ -161,7 +176,10 @@ export default function CombinedForm() {
         </div>
 
         <div>
-          <label htmlFor="threeQuarterBaths" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="threeQuarterBaths"
+            className="block text-sm font-medium text-gray-700"
+          >
             3/4 Baths
           </label>
           <Controller
@@ -179,20 +197,31 @@ export default function CombinedForm() {
         </div>
 
         <div>
-          <label htmlFor="halfBaths" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="halfBaths"
+            className="block text-sm font-medium text-gray-700"
+          >
             1/2 Baths
           </label>
           <Controller
             name="halfBaths"
             control={control}
             render={({ field }) => (
-              <input {...field} type="number" id="halfBaths" className="mt-1 block w-full border rounded p-2" />
+              <input
+                {...field}
+                type="number"
+                id="halfBaths"
+                className="mt-1 block w-full border rounded p-2"
+              />
             )}
           />
         </div>
 
         <div>
-          <label htmlFor="quarterBaths" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="quarterBaths"
+            className="block text-sm font-medium text-gray-700"
+          >
             1/4 Baths
           </label>
           <Controller
@@ -210,7 +239,10 @@ export default function CombinedForm() {
         </div>
 
         <div>
-          <label htmlFor="finishedSqFt" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="finishedSqFt"
+            className="block text-sm font-medium text-gray-700"
+          >
             Finished Square Feet
           </label>
           <Controller
@@ -228,33 +260,52 @@ export default function CombinedForm() {
         </div>
 
         <div>
-          <label htmlFor="lotSize" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="lotSize"
+            className="block text-sm font-medium text-gray-700"
+          >
             Lot Size
           </label>
           <Controller
             name="lotSize"
             control={control}
             render={({ field }) => (
-              <input {...field} type="number" id="lotSize" className="mt-1 block w-full border rounded p-2" />
+              <input
+                {...field}
+                type="number"
+                id="lotSize"
+                className="mt-1 block w-full border rounded p-2"
+              />
             )}
           />
         </div>
 
         <div>
-          <label htmlFor="hoaDues" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="hoaDues"
+            className="block text-sm font-medium text-gray-700"
+          >
             HOA Dues
           </label>
           <Controller
             name="hoaDues"
             control={control}
             render={({ field }) => (
-              <input {...field} type="number" id="hoaDues" className="mt-1 block w-full border rounded p-2" />
+              <input
+                {...field}
+                type="number"
+                id="hoaDues"
+                className="mt-1 block w-full border rounded p-2"
+              />
             )}
           />
         </div>
 
         <div>
-          <label htmlFor="basementSqFt" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="basementSqFt"
+            className="block text-sm font-medium text-gray-700"
+          >
             Basement Sq. Ft.
           </label>
           <Controller
@@ -272,7 +323,10 @@ export default function CombinedForm() {
         </div>
 
         <div>
-          <label htmlFor="garageSqFt" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="garageSqFt"
+            className="block text-sm font-medium text-gray-700"
+          >
             Garage Sq. Ft.
           </label>
           <Controller
@@ -290,7 +344,10 @@ export default function CombinedForm() {
         </div>
 
         <div>
-          <label htmlFor="yearBuilt" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="yearBuilt"
+            className="block text-sm font-medium text-gray-700"
+          >
             Year Built
           </label>
           <Controller
@@ -308,7 +365,10 @@ export default function CombinedForm() {
         </div>
 
         <div>
-          <label htmlFor="remodelYear" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="remodelYear"
+            className="block text-sm font-medium text-gray-700"
+          >
             Structural Remodel Year
           </label>
           <Controller
@@ -331,7 +391,10 @@ export default function CombinedForm() {
       {fields.map((field, index) => (
         <div key={field.id} className="grid grid-cols-4 gap-4">
           <div>
-            <label htmlFor={`openHouses.${index}.date`} className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor={`openHouses.${index}.date`}
+              className="block text-sm font-medium text-gray-700"
+            >
               Date
             </label>
             <input
@@ -342,7 +405,10 @@ export default function CombinedForm() {
           </div>
 
           <div>
-            <label htmlFor={`openHouses.${index}.startTime`} className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor={`openHouses.${index}.startTime`}
+              className="block text-sm font-medium text-gray-700"
+            >
               Start Time
             </label>
             <input
@@ -353,7 +419,10 @@ export default function CombinedForm() {
           </div>
 
           <div>
-            <label htmlFor={`openHouses.${index}.endTime`} className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor={`openHouses.${index}.endTime`}
+              className="block text-sm font-medium text-gray-700"
+            >
               End Time
             </label>
             <input
@@ -377,14 +446,19 @@ export default function CombinedForm() {
 
       <button
         type="button"
-        onClick={() => append({ date: "", startTime: "1:00 PM", endTime: "4:00 PM" })}
+        onClick={() =>
+          append({ date: "", startTime: "1:00 PM", endTime: "4:00 PM" })
+        }
         className="text-blue-500 underline text-sm"
       >
         Add Another Date
       </button>
 
       <div>
-        <label htmlFor="website" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="website"
+          className="block text-sm font-medium text-gray-700"
+        >
           Related Website
         </label>
         <Controller
@@ -405,11 +479,16 @@ export default function CombinedForm() {
             />
           )}
         />
-        {errors.website && <p className="text-red-500 text-sm">{errors.website.message}</p>}
+        {errors.website && (
+          <p className="text-red-500 text-sm">{errors.website.message}</p>
+        )}
       </div>
 
       <div>
-        <label htmlFor="additionalDescription" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="additionalDescription"
+          className="block text-sm font-medium text-gray-700"
+        >
           What I Love About This Home
         </label>
         <textarea
@@ -420,13 +499,22 @@ export default function CombinedForm() {
         ></textarea>
       </div>
 
-
       <h1 className="text-2xl font-bold">Room Details</h1>
       {/* Appliances Section */}
       <div>
         <h2 className="font-semibold mb-2">Appliances</h2>
         <div className="grid grid-cols-2 gap-4">
-          {["Dishwasher", "Dryer", "Freezer", "Garbage disposal", "Microwave", "Range / Oven", "Refrigerator", "Trash compactor", "Washer"].map((appliance) => (
+          {[
+            "Dishwasher",
+            "Dryer",
+            "Freezer",
+            "Garbage disposal",
+            "Microwave",
+            "Range / Oven",
+            "Refrigerator",
+            "Trash compactor",
+            "Washer",
+          ].map((appliance) => (
             <label key={appliance} className="flex items-center">
               <input
                 type="checkbox"
@@ -444,17 +532,19 @@ export default function CombinedForm() {
       <div>
         <h2 className="font-semibold mb-2">Basement</h2>
         <div className="flex flex-col">
-          {["Finished", "Partially finished", "Unfinished", "None"].map((basement) => (
-            <label key={basement} className="flex items-center">
-              <input
-                type="radio"
-                value={basement}
-                {...register("basement")}
-                className="mr-2"
-              />
-              {basement}
-            </label>
-          ))}
+          {["Finished", "Partially finished", "Unfinished", "None"].map(
+            (basement) => (
+              <label key={basement} className="flex items-center">
+                <input
+                  type="radio"
+                  value={basement}
+                  {...register("basement")}
+                  className="mr-2"
+                />
+                {basement}
+              </label>
+            )
+          )}
         </div>
       </div>
 
@@ -462,7 +552,17 @@ export default function CombinedForm() {
       <div>
         <h2 className="font-semibold mb-2">Floor Covering</h2>
         <div className="grid grid-cols-2 gap-4">
-          {["Carpet", "Concrete", "Hardwood", "Laminate", "Linoleum / Vinyl", "Slate", "Softwood", "Tile", "Other"].map((floor) => (
+          {[
+            "Carpet",
+            "Concrete",
+            "Hardwood",
+            "Laminate",
+            "Linoleum / Vinyl",
+            "Slate",
+            "Softwood",
+            "Tile",
+            "Other",
+          ].map((floor) => (
             <label key={floor} className="flex items-center">
               <input
                 type="checkbox"
@@ -483,7 +583,16 @@ export default function CombinedForm() {
       <div>
         <h2 className="font-semibold mb-2">Cooling Type</h2>
         <div className="grid grid-cols-2 gap-4">
-          {["Central", "Evaporative", "Geothermal", "Refrigeration", "Solar", "Wall", "Other", "None"].map((cooling) => (
+          {[
+            "Central",
+            "Evaporative",
+            "Geothermal",
+            "Refrigeration",
+            "Solar",
+            "Wall",
+            "Other",
+            "None",
+          ].map((cooling) => (
             <label key={cooling} className="flex items-center">
               <input
                 type="checkbox"
@@ -501,7 +610,16 @@ export default function CombinedForm() {
       <div>
         <h2 className="font-semibold mb-2">Heating Type</h2>
         <div className="grid grid-cols-2 gap-4">
-          {["Baseboard", "Forced air", "Geothermal", "Heat pump", "Radiant", "Stove", "Wall", "Other"].map((heating) => (
+          {[
+            "Baseboard",
+            "Forced air",
+            "Geothermal",
+            "Heat pump",
+            "Radiant",
+            "Stove",
+            "Wall",
+            "Other",
+          ].map((heating) => (
             <label key={heating} className="flex items-center">
               <input
                 type="checkbox"
@@ -519,7 +637,17 @@ export default function CombinedForm() {
       <div>
         <h2 className="font-semibold mb-2">Heating Fuel</h2>
         <div className="grid grid-cols-2 gap-4">
-          {["Coal", "Electric", "Gas", "Oil", "Propane / Butane", "Solar", "Wood / Pellet", "Other", "None"].map((fuel) => (
+          {[
+            "Coal",
+            "Electric",
+            "Gas",
+            "Oil",
+            "Propane / Butane",
+            "Solar",
+            "Wood / Pellet",
+            "Other",
+            "None",
+          ].map((fuel) => (
             <label key={fuel} className="flex items-center">
               <input
                 type="checkbox"
@@ -687,9 +815,9 @@ export default function CombinedForm() {
         </div>
       </div>
 
-
-
-      <h1 className="text-2xl font-bold mb-4">Exterior and Outdoor Amenities</h1>
+      <h1 className="text-2xl font-bold mb-4">
+        Exterior and Outdoor Amenities
+      </h1>
 
       {/* Exterior Section */}
       <div>
@@ -758,7 +886,10 @@ export default function CombinedForm() {
 
       {/* Number of Stories */}
       <div>
-        <label htmlFor="numberOfStories" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="numberOfStories"
+          className="block text-sm font-medium text-gray-700"
+        >
           # of Stories
         </label>
         <input
@@ -794,7 +925,10 @@ export default function CombinedForm() {
             </label>
           ))}
         </div>
-        <label htmlFor="parkingSpaces" className="block mt-4 text-sm font-medium text-gray-700">
+        <label
+          htmlFor="parkingSpaces"
+          className="block mt-4 text-sm font-medium text-gray-700"
+        >
           # Parking Spaces
         </label>
         <input
@@ -832,41 +966,41 @@ export default function CombinedForm() {
         </div>
       </div>
 
-
       {/* View Section */}
       <div>
         <h2 className="font-semibold mb-2">View</h2>
         <div className="grid grid-cols-2 gap-4">
-          {["City", "Mountain", "Park", "Territorial", "Water", "None"].map((option) => (
-            <label key={option} className="flex items-center">
-              <input
-                type="checkbox"
-                value={option}
-                {...register("view")}
-                className="mr-2"
-              />
-              {option}
-            </label>
-          ))}
+          {["City", "Mountain", "Park", "Territorial", "Water", "None"].map(
+            (option) => (
+              <label key={option} className="flex items-center">
+                <input
+                  type="checkbox"
+                  value={option}
+                  {...register("view")}
+                  className="mr-2"
+                />
+                {option}
+              </label>
+            )
+          )}
         </div>
       </div>
-
-
-
-
-
 
       <h1 className="text-2xl font-bold mb-4">Contact Information</h1>
 
       {/* Instruction Section */}
       <p className="text-gray-600 mb-4">
-        Potential buyers will contact you through the email address you use to register on Zillow.
-        You must also add your phone number to the listing here.
+        Potential buyers will contact you through the email address you use to
+        register on Zillow. You must also add your phone number to the listing
+        here.
       </p>
 
       {/* Phone Number Section */}
       <div>
-        <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="phoneNumber"
+          className="block text-sm font-medium text-gray-700"
+        >
           Phone Number
         </label>
         <input
@@ -880,11 +1014,14 @@ export default function CombinedForm() {
             },
           })}
           placeholder="(555) 555-5555 x5555"
-          className={`mt-1 block w-full border rounded p-2 ${errors.phoneNumber ? "border-red-500" : ""
-            }`}
+          className={`mt-1 block w-full border rounded p-2 ${
+            errors.phoneNumber ? "border-red-500" : ""
+          }`}
         />
         {errors.phoneNumber && (
-          <p className="text-red-500 text-sm mt-1">{errors.phoneNumber.message}</p>
+          <p className="text-red-500 text-sm mt-1">
+            {errors.phoneNumber.message}
+          </p>
         )}
       </div>
 
@@ -899,15 +1036,18 @@ export default function CombinedForm() {
             className="mt-1"
           />
           <span className="text-sm text-gray-600">
-            I agree to, acknowledge and understand the following: (i) I am (or I have authority to
-            act on behalf of) the owner of this home; (ii) I will not provide incorrect information
-            or state a discriminatory preference; (iii) I will be posting my property "for sale by
-            owner" on zillow.com and other affiliated websites and that I will solely be responsible
-            for maintaining and updating the posting and responding to and negotiating potential
-            offers to purchase the property; (iv) Zillow, Inc. ("Zillow") is a licensed real estate
-            brokerage, that I am not entering into any agency or brokerage relationship with Zillow
-            as part of this posting and that Zillow is not providing me with any real estate
-            brokerage services as part of this posting; and (v) I will comply with the{" "}
+            I agree to, acknowledge and understand the following: (i) I am (or I
+            have authority to act on behalf of) the owner of this home; (ii) I
+            will not provide incorrect information or state a discriminatory
+            preference; (iii) I will be posting my property "for sale by owner"
+            on zillow.com and other affiliated websites and that I will solely
+            be responsible for maintaining and updating the posting and
+            responding to and negotiating potential offers to purchase the
+            property; (iv) Zillow, Inc. ("Zillow") is a licensed real estate
+            brokerage, that I am not entering into any agency or brokerage
+            relationship with Zillow as part of this posting and that Zillow is
+            not providing me with any real estate brokerage services as part of
+            this posting; and (v) I will comply with the{" "}
             <a
               href="https://www.zillow.com/terms/"
               target="_blank"
@@ -924,11 +1064,14 @@ export default function CombinedForm() {
               className="text-blue-500 underline"
             >
               Listing Quality Policy
-            </a>.
+            </a>
+            .
           </span>
         </label>
         {errors.agreement && (
-          <p className="text-red-500 text-sm mt-1">{errors.agreement.message}</p>
+          <p className="text-red-500 text-sm mt-1">
+            {errors.agreement.message}
+          </p>
         )}
       </div>
 
