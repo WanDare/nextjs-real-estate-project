@@ -323,14 +323,6 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
             </tbody>
           </table>
         </section>
-
-        <section
-          id="Neighborhood"
-          className="p-4 rounded-xl border-2 mb-4 shadow-md"
-        >
-          <h2 className="text-xl font-bold mb-2">Neighborhood</h2>
-          <p>Explore more about the area here.</p>
-        </section>
       </div>
     </main>
   );

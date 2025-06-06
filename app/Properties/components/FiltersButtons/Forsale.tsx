@@ -150,6 +150,10 @@ export default function PropertySearchBar() {
                       label="condo"
                       tooltip="Homes that have pending deals."
                     />
+                    <CheckboxWithLabel
+                      label="room"
+                      tooltip="Homes that have pending deals."
+                    />
                   </div>
                 </div>
                 <Button className="bg-blue-600 w-full" variant="outline">

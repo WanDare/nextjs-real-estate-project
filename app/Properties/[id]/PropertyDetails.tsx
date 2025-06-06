@@ -165,7 +165,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
           {/* Property Description Section */}
 
           <section className="border-t border-b   border-gray-300">
-            <h2 className="text-xl font-bold  py-6 ">What's special</h2>
+            {/* <h2 className="text-xl font-bold  py-6 ">What's special</h2>
             <div className="flex gap-2 p-2 text-black">
               <p className="bg-[#F1F1F4] rounded-sm p-1 px-2">
                 {property.architecturalStyle}
@@ -183,7 +183,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
               <p className="bg-[#F1F1F4] rounded-sm p-1 m-10">
                 {property.propertyType}
               </p>
-            </div>
+            </div> */}
 
             <p>
               {showMore
@@ -267,14 +267,14 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
             <h3 className="font-semibold text-lg mt-4">Interior area</h3>
             <ul className="list-disc list-inside">
               <li>Total structure area: 2,156 </li>
-              <li>Total interior livable area: 2,156 sqft</li>
+              <li>Total interior livable area: 2,156 m²</li>
             </ul>
             <h3 className="font-semibold text-lg mt-4">
               Financial & listing details
             </h3>
             <ul className="list-disc list-inside">
               <li>Total structure area: 2,156</li>
-              <li>Total interior livable area: 2,156 sqft</li>
+              <li>Total interior livable area: 2,156 m²</li>
             </ul>
           </div>
         </section>
@@ -313,7 +313,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
             <h3 className="font-semibold text-lg mt-4">Interior area</h3>
             <ul className="list-disc list-inside">
               <li>Total structure area: 2,156</li>
-              <li>Total interior livable area: 2,156 sqft</li>
+              <li>Total interior livable area: 2,156 m²</li>
             </ul>
           </div>
         </section>
@@ -369,7 +369,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                 <td className="py-3 px-2">Listed for sale</td>
                 <td className="py-3 px-2">
                   <p>$200,000</p>
-                  <p className="text-sm text-gray-500">$93/sqft</p>
+                  <p className="text-sm text-gray-500">$93/m²</p>
                 </td>
               </tr>
             </tbody>
@@ -483,14 +483,6 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
               </div>
             </div>
           </div>
-        </section>
-
-        <section
-          id="Neighburhood"
-          className="p-4 rounded-xl border-2 mb-4 shadow-md"
-        >
-          <h2 className="text-xl font-bold mb-2">Neighburhood</h2>
-          <p>${property.price}</p>
         </section>
       </div>
     </main>

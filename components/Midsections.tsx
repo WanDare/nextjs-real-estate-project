@@ -8,8 +8,8 @@ const Midsections = () => {
   const { theme } = useTheme(); // Get the current theme (light or dark)
 
   const [formData, setFormData] = useState({
-    location: "Chicago",
-    email: "redfin@redfin.com",
+    location: "Phnom Penh",
+    email: "neath@gmail.com",
     phone: "",
     helpWith:
       "I'm interested in buying, selling or a free consult with a Redfin agent.",
@@ -42,60 +42,76 @@ const Midsections = () => {
           <h2 className="text-3xl font-semibold mb-8">Our Services</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Card 1 - Buy */}
-            <div className="  border-solid border-2 shadow-2xl rounded-lg p-6 flex flex-col items-center text-center">
-              <img
-                src="/assets/images/redfinagent.png"
-                alt="Buy"
-                className="w-16 h-16 mb-4"
-              />
-              <h3 className="text-xl font-semibold  mb-4">Buy</h3>
-              <p className=" mb-6">
-                Redfin agents are among the most experienced in the industry and
-                can help you win in today’s market.
-              </p>
+            <div
+              className="border-solid border-2 shadow-2xl rounded-lg p-6 flex flex-col items-center text-center h-full 
+      transition-all duration-300 hover:shadow-3xl hover:-translate-y-2 hover:scale-105 bg-white"
+            >
+              <div className="flex-1 flex flex-col items-center w-full">
+                <img
+                  src="/assets/images/redfinagent.png"
+                  alt="Buy"
+                  className="w-16 h-16 mb-4"
+                />
+                <h3 className="text-xl font-semibold mb-4">Buy</h3>
+                <p className="mb-6">
+                  Redfin agents are among the most experienced in the industry
+                  and can help you win in today’s market.
+                </p>
+              </div>
               <a
                 href="/Sell"
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300 mt-4 w-full"
               >
                 Find an agent
               </a>
             </div>
 
             {/* Card 2 - Sell */}
-            <div className="border-solid border-2 shadow-2xl rounded-lg p-6 flex flex-col items-center text-center">
-              <img
-                src="/assets/images/Sell.png"
-                alt="Sell"
-                className="w-16 h-16 mb-4"
-              />
-              <h3 className="text-xl font-semibold  mb-4">Sell</h3>
-              <p className=" mb-6">
-                We know how to price, market, and sell your home for top dollar.
-                And we do it all for half the listing fee others often charge.
-              </p>
+            <div
+              className="border-solid border-2 shadow-2xl rounded-lg p-6 flex flex-col items-center text-center h-full 
+      transition-all duration-300 hover:shadow-3xl hover:-translate-y-2 hover:scale-105 bg-white"
+            >
+              <div className="flex-1 flex flex-col items-center w-full">
+                <img
+                  src="/assets/images/Sell.png"
+                  alt="Sell"
+                  className="w-16 h-16 mb-4"
+                />
+                <h3 className="text-xl font-semibold mb-4">Sell</h3>
+                <p className="mb-6">
+                  We know how to price, market, and sell your home for top
+                  dollar. And we do it all for half the listing fee others often
+                  charge.
+                </p>
+              </div>
               <a
                 href="#learn-more"
-                className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300"
+                className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300 mt-4 w-full"
               >
                 Learn more
               </a>
             </div>
 
             {/* Card 3 - Rent */}
-            <div className="border-solid border-2 shadow-2xl rounded-lg p-6 flex flex-col items-center text-center">
-              <img
-                src="/assets/images/Rent.png"
-                alt="Rent"
-                className="w-16 h-16 mb-4"
-              />
-              <h3 className="text-xl font-semibold  mb-4">Rent</h3>
-              <p className=" mb-6">
-                Whether you’re searching for apartments, condos, or rental
-                homes, we make it easy to find a place you’ll love.
-              </p>
+            <div
+              className="border-solid border-2 shadow-2xl rounded-lg p-6 flex flex-col items-center text-center h-full 
+      transition-all duration-300 hover:shadow-3xl hover:-translate-y-2 hover:scale-105 bg-white"
+            >
+              <div className="flex-1 flex flex-col items-center w-full">
+                <img
+                  src="/assets/images/Rent.png"
+                  alt="Rent"
+                  className="w-16 h-16 mb-4"
+                />
+                <h3 className="text-xl font-semibold mb-4">Rent</h3>
+                <p className="mb-6">
+                  Whether you’re searching for apartments, condos, or rental
+                  homes, we make it easy to find a place you’ll love.
+                </p>
+              </div>
               <a
                 href="/Rent"
-                className="bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition duration-300"
+                className="bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition duration-300 mt-4 w-full"
               >
                 Explore rentals
               </a>
@@ -232,7 +248,7 @@ const Midsections = () => {
 
               <button
                 type="submit"
-                className="w-full bg-blue-600  p-3 rounded-md hover:bg-blue-700 transition duration-300"
+                className="w-full bg-blue-600 text-white  p-3 rounded-md hover:bg-blue-700 transition duration-300"
               >
                 Submit
               </button>
