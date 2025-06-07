@@ -83,7 +83,6 @@ export default function PropertySearchBar() {
           <Button variant="link" asChild>
             <a href="/Sell">Find an Agent</a>
           </Button>
-          <Button variant="link">Home Loans</Button>
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline">Beds & Baths</Button>
@@ -208,7 +207,7 @@ export default function PropertySearchBar() {
         />
         <PropertyFilter />
         {/* Save Search Button */}
-        <Button color="primary">Save Search</Button>
+        <Button color="primary">Saved Favourite</Button>
         <div className="md:block hidden">
           <MailOpen />
         </div>

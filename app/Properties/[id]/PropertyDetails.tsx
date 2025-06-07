@@ -6,11 +6,14 @@ import {
   House,
   BedDouble,
   ChevronDown,
+  MessageSquare,
+  Phone,
 } from "lucide-react";
 import SaveShare from "@/components/SaveShare";
 import { useState } from "react";
 import Image from "next/image";
 import { Property } from "@/types/property";
+import RequestDetailsBox from "@/components/RequestDetailsBox";
 
 type PropertyDetailsProps = {
   property: Property;
@@ -21,469 +24,318 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
   const toggleShowMore = () => setShowMore(!showMore);
 
   return (
-    <main className="p-2">
+    <main className="bg-gray-50 min-h-screen w-full">
       {/* Tabs for navigation */}
-      <div className="tabs-container flex flex-wrap sm:flex-nowrap  font-medium text-xs sm:text-sm md:text-base justify-between border-b border-gray-300 mb-4 ">
-        <button
-          className="tab-button p-2  font-medium whitespace-nowrap  "
-          onClick={() =>
-            document.getElementById("overview")?.scrollIntoView({
-              behavior: "smooth",
-            })
-          }
-        >
-          Overview
-        </button>
-
-        <button
-          className="tab-button p-2  py-2 font-medium whitespace-nowrap  "
-          onClick={() =>
-            document.getElementById("Facts & features")?.scrollIntoView({
-              behavior: "smooth",
-            })
-          }
-        >
-          Facts & features
-        </button>
-        <button
-          className="tab-button  py-2 font-medium whitespace-nowrap"
-          onClick={() =>
-            document.getElementById("Market value")?.scrollIntoView({
-              behavior: "smooth",
-            })
-          }
-        >
-          Market value
-        </button>
-        <button
-          className="tab-button py-2 font-medium whitespace-nowrap"
-          onClick={() =>
-            document.getElementById("Payment Calculator")?.scrollIntoView({
-              behavior: "smooth",
-            })
-          }
-        >
-          Payment Calculator
-        </button>
-        <button
-          className="tab-button py-2 font-medium whitespace-nowrap"
-          onClick={() =>
-            document.getElementById("Neighburhood")?.scrollIntoView({
-              behavior: "smooth",
-            })
-          }
-        >
-          Neighburhood
-        </button>
+      <div className="w-full mx-auto px-4 pt-8">
+        <div className="flex flex-wrap sm:flex-nowrap font-medium text-xs sm:text-sm md:text-base justify-between border-b border-gray-200 mb-4 bg-white rounded-t-2xl shadow-sm">
+          <button
+            className="tab-button p-3 font-semibold whitespace-nowrap hover:text-blue-700"
+            onClick={() =>
+              document
+                .getElementById("overview")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            Overview
+          </button>
+          <button
+            className="tab-button p-3 font-semibold whitespace-nowrap hover:text-blue-700"
+            onClick={() =>
+              document
+                .getElementById("Facts & features")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            Facts & features
+          </button>
+          <button
+            className="tab-button p-3 font-semibold whitespace-nowrap hover:text-blue-700"
+            onClick={() =>
+              document
+                .getElementById("Market value")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            Market value
+          </button>
+        </div>
       </div>
 
-      <div className="flex ">
-        <Image
-          className="rounded-md w-full h-[600px] object-cover"
-          src={property.imageUrl}
-          alt={property.title}
-          width={1200}
-          height={200}
-        />
+      {/* Property Main Image */}
+      <div className="w-full mx-auto px-4">
+        <div className="rounded-2xl overflow-hidden shadow-lg mb-8">
+          <Image
+            className="w-full h-[600px] object-cover"
+            src={property.imageUrl}
+            alt={property.title}
+            width={1200}
+            height={400}
+            priority
+          />
+        </div>
       </div>
-      {/* Overview Section */}
 
-      <div className="py-4">
-        <section
-          id="overview"
-          className="p-6  rounded-xl border-2 mb-4 shadow-md"
-        >
-          {/* Price and Location */}
-          <div className="mb-4">
-            <div
-              className="flex items-center justify-between
-                        "
-            >
-              <h2 className="text-3xl font-bold  mb-2">
-                ${property.price.toLocaleString()}
-              </h2>
-              <SaveShare />
+      {/* Two-column area: Details (left) + Request Details (right) */}
+      <div className="w-full mx-auto px-4 flex flex-col lg:flex-row gap-8">
+        {/* Left: Main Property Detail Content */}
+        <div className="w-full lg:w-2/3">
+          {/* Overview Section */}
+          <section
+            id="overview"
+            className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md mb-6"
+          >
+            {/* Price and Location */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-4xl font-extrabold mb-2 text-gray-900">
+                  ${property.price.toLocaleString()}
+                </h2>
+                <SaveShare />
+              </div>
+              <p className="text-gray-600 text-lg">{property.location}</p>
             </div>
-            <p className="">{property.location}</p>
-          </div>
-
-          {/* Beds, Baths, and Sqft */}
-          <div className="flex items-center justify-between border-t border-b py-4 border-gray-300">
-            <div className="flex flex-col items-center text-center">
-              <h3 className="text-xl font-bold ">{property.bedrooms}</h3>
-              <p className="">
-                Beds
-                <BedDouble />
+            {/* Beds, Baths, and Sqft */}
+            <div className="flex items-center justify-between border-t border-b py-6 border-gray-100">
+              <div className="flex flex-col items-center text-center">
+                <h3 className="text-2xl font-extrabold">{property.bedrooms}</h3>
+                <p className="flex items-center gap-1 text-gray-500 font-medium">
+                  Beds <BedDouble />
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <h3 className="text-2xl font-extrabold">
+                  {property.bathrooms}
+                </h3>
+                <p className="text-gray-500 font-medium">Baths</p>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <h3 className="text-2xl font-extrabold">
+                  {property.sqft.toLocaleString()}
+                </h3>
+                <p className="text-gray-500 font-medium">m²</p>
+              </div>
+            </div>
+            {/* Additional Details */}
+            <div className="grid grid-cols-2 gap-6 mt-6 text-base mb-8">
+              <div className="flex items-center gap-2 text-gray-600">
+                <span className="w-8 h-8 rounded-full flex items-center justify-center bg-blue-50">
+                  <House />
+                </span>
+                <p>{property.propertyType}</p>
+              </div>
+              <div className="flex items-center gap-2 text-gray-600">
+                <span className="w-8 h-8 rounded-full flex items-center justify-center bg-blue-50">
+                  <Hammer />
+                </span>
+                <p>Built in {property.YearBuilt}</p>
+              </div>
+              <div className="flex items-center gap-2 text-gray-600">
+                <span className="w-8 h-8 rounded-full flex items-center justify-center bg-blue-50">
+                  <Ruler />
+                </span>
+                <p>{property.LotSize} m²</p>
+              </div>
+              <div className="flex items-center gap-2 text-gray-600">
+                <span className="w-8 h-8 rounded-full flex items-center justify-center bg-blue-50">
+                  <BadgeDollarSign />
+                </span>
+                <p>$-- Zestimate</p>
+              </div>
+              <div className="flex items-center gap-2 text-gray-600">
+                <span className="w-8 h-8 rounded-full flex items-center justify-center bg-blue-50">
+                  <BadgeDollarSign />
+                </span>
+                <p>${property.HOADues}/mo HOA</p>
+              </div>
+            </div>
+            {/* Property Description Section */}
+            <section className="border-t border-b border-gray-100 py-6">
+              <p className="text-gray-700 leading-relaxed">
+                {showMore
+                  ? property.description
+                  : property.description.slice(0, 250) + "..."}
               </p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <h3 className="text-xl font-bold ">{property.bathrooms}</h3>
-              <p className="">Baths</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <h3 className="text-xl font-bold ">
-                {property.sqft.toLocaleString()}
-              </h3>
-              <p className="">m²</p>
-            </div>
-          </div>
-
-          {/* Additional Details */}
-          <div className="grid grid-cols-2 gap-4 mt-4 text-sm  mb-6 ">
-            <div className="flex items-center gap-2">
-              <span className=" w-6 h-6 rounded-full flex items-center justify-center">
-                <House />
-              </span>
-              <p>{property.propertyType}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className=" w-6 h-6 rounded-full flex items-center justify-center">
-                <Hammer />
-              </span>
-              <p>Built in {property.YearBuilt}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className=" w-6 h-6  rounded-full flex items-center justify-center">
-                <Ruler />
-              </span>
-              <p>{property.LotSize} m²</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className=" w-6 h-6  rounded-full flex items-center justify-center">
-                <BadgeDollarSign />
-              </span>
-              <p>$-- Zestimate</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className=" w-6 h-6 rounded-full flex items-center justify-center">
-                <BadgeDollarSign />
-              </span>
-              <p>${property.HOADues}/mo HOA</p>
-            </div>
-          </div>
-
-          {/* Property Description Section */}
-
-          <section className="border-t border-b   border-gray-300">
-            {/* <h2 className="text-xl font-bold  py-6 ">What's special</h2>
-            <div className="flex gap-2 p-2 text-black">
-              <p className="bg-[#F1F1F4] rounded-sm p-1 px-2">
-                {property.architecturalStyle}
-              </p>
-
-              <p className="bg-[#F1F1F4] rounded-sm p-1 px-2">
-                {property.exterior}
-              </p>
-              <p className="bg-[#F1F1F4] rounded-sm p-1 px-2">
-                {property.outdoorAmenities}
-              </p>
-              <p className="bg-[#F1F1F4] rounded-sm p-1 px-2">
-                {property.indoorFeatures}
-              </p>
-              <p className="bg-[#F1F1F4] rounded-sm p-1 m-10">
-                {property.propertyType}
-              </p>
-            </div> */}
-
-            <p>
-              {showMore
-                ? property.description
-                : property.description.slice(0, 200) + "..."}
-            </p>
-            <button
-              onClick={toggleShowMore}
-              className="flex items-center text-blue-500 underline mt-2 transition-transform"
-            >
-              {showMore ? "Show Less" : "Show More"}
-              <ChevronDown
-                className={`ml-1 transition-transform ${
-                  showMore ? "rotate-180" : "rotate-0"
-                }`}
-                size={16}
-              />
-            </button>
-
-            <div className="flex gap-2 py-2">
-              |<p>Now on MHK-RealEstate</p>|<p>200 views</p>|<p>19 saves</p>
-            </div>
-            <ol className="py-2">
-              <li>MHK last checked: 13 hours ago</li>
-              <li>Listing updated:January 25, 2025 at 08:00pm </li>
-              <li>
-                Listed by: Polly Grueso TREC #0742460 281-235-5925, Anchored
-                Real Estate Group
-              </li>
-              <li className="py-2">Source: HAR,MLS#: 89058153</li>
-            </ol>
-          </section>
-        </section>
-
-        {/* Facts & features */}
-        <section
-          id="Facts & features"
-          className="flex p-6 rounded-xl border-2 shadow-md mb-4 items-start justify-between"
-        >
-          {/* Left Column */}
-          <div className="w-1/2 pr-4">
-            <h1 className="text-xl font-bold mb-2">Facts & features</h1>
-            <h1>Interior.</h1>
-
-            <h3 className="font-semibold text-lg">Bedrooms & bathrooms</h3>
-            <ul className="list-disc list-inside">
-              <li>Bedrooms: {property.bedrooms}</li>
-              <li>Bathrooms: {property.bathrooms}</li>
-              {/* <li>Full bathrooms: </li>
-                            <li>1/2 bathrooms: 1</li> */}
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Rooms</h3>
-            <ul className="list-disc list-inside">
-              <li className="gap-2 p-2">Room types: {property.rooms}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Heating</h3>
-            <ul className="list-disc list-inside">
-              <li>{property.heatingFuel}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Cooling</h3>
-            <ul className="list-disc list-inside">
-              <li>{property.coolingType}</li>
-            </ul>
-          </div>
-
-          {/* Right Column */}
-          <div className="w-1/2 pl-4">
-            <h3 className="font-semibold text-lg">Appliances</h3>
-            <ul className="list-disc list-inside">
-              <li>{property.rooms}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Features</h3>
-            <ul className="list-disc list-inside">
-              <li>{property.indoorFeatures}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Interior area</h3>
-            <ul className="list-disc list-inside">
-              <li>Total structure area: 2,156 </li>
-              <li>Total interior livable area: 2,156 m²</li>
-            </ul>
-            <h3 className="font-semibold text-lg mt-4">
-              Financial & listing details
-            </h3>
-            <ul className="list-disc list-inside">
-              <li>Total structure area: 2,156</li>
-              <li>Total interior livable area: 2,156 m²</li>
-            </ul>
-          </div>
-        </section>
-        <section className="flex p-6 rounded-xl border-2 shadow-md mb-4 items-start justify-between">
-          {/* Left Column */}
-          <div className="w-1/2 pr-4">
-            <h1 className="text-xl font-bold mb-2">Property</h1>
-
-            <h3 className="font-semibold text-lg">Parking</h3>
-            <ul className="list-disc list-inside">
-              <li>{property.parking}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Features</h3>
-            <ul className="list-disc list-inside">
-              <li>Room types: 1 Living Area, Den, Formal Dining</li>
-            </ul>
-          </div>
-
-          {/* Right Column */}
-          <div className="w-1/2 pl-4">
-            <h3 className="font-semibold text-lg">Lot</h3>
-            <ul className="list-disc list-inside">
-              <li>Lot-Size: {property.LotSize}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Features</h3>
-            <ul className="list-disc list-inside">
-              <li>Crown Molding, All Bedrooms Up, Countertops (Granite)</li>
-              <li>Flooring: Carpet, Laminate</li>
-              <li>Windows: Insulated/Low-E windows</li>
-              <li>Number of fireplaces: 1</li>
-              <li>Fireplace features: Wood Burning</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Interior area</h3>
-            <ul className="list-disc list-inside">
-              <li>Total structure area: 2,156</li>
-              <li>Total interior livable area: 2,156 m²</li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Property Price Section */}
-        <section
-          id="Market value"
-          className="p-4 rounded-xl border-2 mb-4 shadow-md"
-        >
-          {/* Section Header */}
-          <h2 className="text-2xl font-bold text-blue-700 mb-4">
-            Estimated market value
-          </h2>
-
-          {/* Three-Column Overview */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-            {/* Zestimate */}
-            <div className="p-4 border rounded-md text-center">
-              <p className="font-semibold">
-                Zestimate<sup>®</sup>
-              </p>
-              <p className="text-gray-500">Not available</p>
-            </div>
-
-            {/* Estimated Sales Range */}
-            <div className="p-4 border rounded-md text-center">
-              <p className="font-semibold">Estimated sales range</p>
-              <p className="text-gray-500">Not available</p>
-            </div>
-
-            {/* Rent Zestimate */}
-            <div className="p-4 border rounded-md text-center">
-              <p className="font-semibold">
-                Rent Zestimate<sup>®</sup>
-              </p>
-              <p className="text-gray-500">Not available</p>
-            </div>
-          </div>
-
-          {/* Price History */}
-          <h3 className="text-xl font-bold mb-2">Price history</h3>
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-gray-300 text-gray-600 font-semibold">
-                <th className="py-2 px-2 w-1/4">Date</th>
-                <th className="py-2 px-2 w-1/4">Event</th>
-                <th className="py-2 px-2 w-1/4">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-200">
-                <td className="py-3 px-2">1/25/2025</td>
-                <td className="py-3 px-2">Listed for sale</td>
-                <td className="py-3 px-2">
-                  <p>$200,000</p>
-                  <p className="text-sm text-gray-500">$93/m²</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          {/* Source Info */}
-          <p className="text-sm text-gray-500 mt-2">
-            Source: <span className="text-blue-600">HAR #89058153</span>{" "}
-            <a href="#" className="underline">
-              Report
-            </a>
-          </p>
-
-          <h1>Public tax history</h1>
-          <p>Tax history is unavailable.</p>
-        </section>
-
-        <section
-          id="Payment Calculator"
-          className="p-4 rounded-xl border-2 mb-4 shadow-md"
-        >
-          {/* Heading */}
-          <h2 className="text-xl font-bold mb-4">Monthly payment</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-            {/* Left Section: Pie Chart + Legend */}
-            <div className="flex items-center  rounded p-4">
-              {/* Pie Chart */}
-              <div className="relative w-40 h-40 flex-none mr-6">
-                {/* Background circle */}
-                <div
-                  className="absolute inset-0 rounded-full"
-                  style={{
-                    background:
-                      "conic-gradient(#0069B4 25%, #7D00A3 25% 35%, #222F89 35% 50%, #08CB9A 50% 100%)",
-                  }}
+              <button
+                onClick={toggleShowMore}
+                className="flex items-center text-blue-600 underline mt-3 font-medium"
+              >
+                {showMore ? "Show Less" : "Show More"}
+                <ChevronDown
+                  className={`ml-1 transition-transform ${
+                    showMore ? "rotate-180" : "rotate-0"
+                  }`}
+                  size={16}
                 />
-                {/* Center text overlay */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <p className="text-sm ">Est.</p>
-                  <p className="text-xl font-bold">$1,526</p>
-                </div>
+              </button>
+              <div className="flex gap-2 py-3 text-gray-400">
+                | <p>Now on MHK-RealEstate</p> | <p>200 views</p> |{" "}
+                <p>19 saves</p> |
               </div>
-
-              {/* Legend */}
-              <div className="text-sm space-y-2">
-                <div className="flex items-center">
-                  <span className="inline-block w-3 h-3 rounded-full bg-[#222F89] mr-2" />
-                  <p>
-                    Principal & interest: <strong>$984</strong>
-                  </p>
-                </div>
-                <div className="flex items-center">
-                  <span className="inline-block w-3 h-3 rounded-full bg-[#7D00A3] mr-2" />
-                  <p>
-                    Property taxes: <strong>$267</strong>
-                  </p>
-                </div>
-                <div className="flex items-center">
-                  <span className="inline-block w-3 h-3 rounded-full bg-[#06B6D4] mr-2" />
-                  <p>
-                    Home insurance: <strong>$70</strong>
-                  </p>
-                </div>
-                <div className="flex items-center">
-                  <span className="inline-block w-3 h-3 rounded-full bg-[#08CB9A] mr-2" />
-                  <p>
-                    HOA: <strong>$205</strong>
-                  </p>
-                </div>
+              <ol className="py-2 text-sm text-gray-400">
+                <li>MHK last checked: 13 hours ago</li>
+                <li>Listing updated: January 25, 2025 at 08:00pm </li>
+                <li>
+                  Listed by: Polly Grueso TREC #0742460 281-235-5925, Anchored
+                  Real Estate Group
+                </li>
+                <li className="py-2">Source: HAR,MLS#: 89058153</li>
+              </ol>
+            </section>
+          </section>
+          {/* Facts & features */}
+          <section
+            id="Facts & features"
+            className="flex flex-col md:flex-row p-8 rounded-2xl border border-gray-100 shadow-md mb-6 gap-6 bg-white"
+          >
+            {/* Left Column */}
+            <div className="w-full md:w-1/2 pr-0 md:pr-4">
+              <h1 className="text-xl font-bold mb-2 text-gray-900">
+                Facts & features
+              </h1>
+              <h1 className="font-semibold text-gray-700 mb-2">Interior</h1>
+              <h3 className="font-semibold text-base">Bedrooms & bathrooms</h3>
+              <ul className="list-disc list-inside text-gray-700 mb-3">
+                <li>Bedrooms: {property.bedrooms}</li>
+                <li>Bathrooms: {property.bathrooms}</li>
+              </ul>
+              <h3 className="font-semibold text-base mt-2">Rooms</h3>
+              <ul className="list-disc list-inside text-gray-700 mb-3">
+                <li className="gap-2 p-2">Room types: {property.rooms}</li>
+              </ul>
+              <h3 className="font-semibold text-base mt-2">Heating</h3>
+              <ul className="list-disc list-inside text-gray-700 mb-3">
+                <li>{property.heatingFuel}</li>
+              </ul>
+              <h3 className="font-semibold text-base mt-2">Cooling</h3>
+              <ul className="list-disc list-inside text-gray-700">
+                <li>{property.coolingType}</li>
+              </ul>
+            </div>
+            {/* Right Column */}
+            <div className="w-full md:w-1/2 pl-0 md:pl-4">
+              <h3 className="font-semibold text-base">Appliances</h3>
+              <ul className="list-disc list-inside text-gray-700 mb-3">
+                <li>{property.rooms}</li>
+              </ul>
+              <h3 className="font-semibold text-base mt-2">Features</h3>
+              <ul className="list-disc list-inside text-gray-700 mb-3">
+                <li>{property.indoorFeatures}</li>
+              </ul>
+              <h3 className="font-semibold text-base mt-2">Interior area</h3>
+              <ul className="list-disc list-inside text-gray-700 mb-3">
+                <li>Total structure area: 2,156</li>
+                <li>Total interior livable area: 2,156 m²</li>
+              </ul>
+              <h3 className="font-semibold text-base mt-2">
+                Financial & listing details
+              </h3>
+              <ul className="list-disc list-inside text-gray-700">
+                <li>Total structure area: 2,156</li>
+                <li>Total interior livable area: 2,156 m²</li>
+              </ul>
+            </div>
+          </section>
+          {/* Additional Features */}
+          <section className="flex flex-col md:flex-row p-8 rounded-2xl border border-gray-100 shadow-md mb-6 gap-6 bg-white">
+            {/* Left Column */}
+            <div className="w-full md:w-1/2 pr-0 md:pr-4">
+              <h1 className="text-xl font-bold mb-2 text-gray-900">Property</h1>
+              <h3 className="font-semibold text-base">Parking</h3>
+              <ul className="list-disc list-inside text-gray-700 mb-3">
+                <li>{property.parking}</li>
+              </ul>
+              <h3 className="font-semibold text-base mt-2">Features</h3>
+              <ul className="list-disc list-inside text-gray-700">
+                <li>Room types: 1 Living Area, Den, Formal Dining</li>
+              </ul>
+            </div>
+            {/* Right Column */}
+            <div className="w-full md:w-1/2 pl-0 md:pl-4">
+              <h3 className="font-semibold text-base">Lot</h3>
+              <ul className="list-disc list-inside text-gray-700 mb-3">
+                <li>Lot-Size: {property.LotSize}</li>
+              </ul>
+              <h3 className="font-semibold text-base mt-2">Features</h3>
+              <ul className="list-disc list-inside text-gray-700 mb-3">
+                <li>Crown Molding, All Bedrooms Up, Countertops (Granite)</li>
+                <li>Flooring: Carpet, Laminate</li>
+                <li>Windows: Insulated/Low-E windows</li>
+                <li>Number of fireplaces: 1</li>
+                <li>Fireplace features: Wood Burning</li>
+              </ul>
+              <h3 className="font-semibold text-base mt-2">Interior area</h3>
+              <ul className="list-disc list-inside text-gray-700">
+                <li>Total structure area: 2,156</li>
+                <li>Total interior livable area: 2,156 m²</li>
+              </ul>
+            </div>
+          </section>
+          {/* Property Price Section */}
+          <section
+            id="Market value"
+            className="bg-white p-8 rounded-2xl border border-gray-100 mb-10 shadow-md"
+          >
+            <h2 className="text-2xl font-extrabold text-blue-700 mb-4">
+              Estimated market value
+            </h2>
+            {/* Three-Column Overview */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              <div className="p-4 border rounded-lg text-center bg-gray-50">
+                <p className="font-semibold">
+                  Zestimate<sup>®</sup>
+                </p>
+                <p className="text-gray-500">Not available</p>
+              </div>
+              <div className="p-4 border rounded-lg text-center bg-gray-50">
+                <p className="font-semibold">Estimated sales range</p>
+                <p className="text-gray-500">Not available</p>
+              </div>
+              <div className="p-4 border rounded-lg text-center bg-gray-50">
+                <p className="font-semibold">
+                  Rent Zestimate<sup>®</sup>
+                </p>
+                <p className="text-gray-500">Not available</p>
               </div>
             </div>
-
-            {/* Right Section: Info Box */}
-            <div className="rounded p-4">
-              <div className="flex items-start space-x-2 mb-2">
-                <div className="text-blue-500">
-                  {/* Info icon, e.g. Lucide or Material icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13 16h-1v-4h-1m1-4h.01M12 4.5c4.142 0 7.5 
-                   3.358 7.5 7.5s-3.358 7.5-7.5 7.5-7.5-3.358-7.5-7.5
-                   3.358-7.5 7.5-7.5z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold">
-                    Your custom payment is not available
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    We're using a representative interest rate for this
-                    calculation.
-                  </p>
-                </div>
-              </div>
-
-              {/* Links */}
-              <div className="flex items-center space-x-6 text-blue-600 text-sm mt-2">
-                <button className="underline">Edit your info</button>
-                <button className="underline">Learn more</button>
-              </div>
-            </div>
+            {/* Price History */}
+            <h3 className="text-xl font-bold mb-2">Price history</h3>
+            <table className="w-full text-left border-collapse mb-3">
+              <thead>
+                <tr className="border-b border-gray-200 text-gray-600 font-semibold">
+                  <th className="py-2 px-2 w-1/4">Date</th>
+                  <th className="py-2 px-2 w-1/4">Event</th>
+                  <th className="py-2 px-2 w-1/4">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-100">
+                  <td className="py-3 px-2">1/25/2025</td>
+                  <td className="py-3 px-2">Listed for sale</td>
+                  <td className="py-3 px-2">
+                    <p>$200,000</p>
+                    <p className="text-sm text-gray-500">$93/m²</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p className="text-sm text-gray-400 mt-2">
+              Source: <span className="text-blue-600">HAR #89058153</span>{" "}
+              <a href="#" className="underline">
+                Report
+              </a>
+            </p>
+            <h1 className="font-semibold mt-4 text-gray-900">
+              Public tax history
+            </h1>
+            <p className="text-gray-500">Tax history is unavailable.</p>
+          </section>
+        </div>
+        {/* Right: Request Details Box */}
+        <div className="w-full lg:w-1/3 flex-shrink-0">
+          <div className="sticky top-8 pb-8">
+            <RequestDetailsBox />
           </div>
-        </section>
+        </div>
       </div>
     </main>
   );

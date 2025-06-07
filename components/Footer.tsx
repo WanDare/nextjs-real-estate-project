@@ -37,12 +37,12 @@ const Footer = () => {
           {/* Header Section */}
           <div className="flex items-center justify-center lg:justify-between flex-col lg:flex-row pb-12 sm:-pt-2 sm:pb-2 gap-7 lg:gap-0 border-b border-gray-200">
             <h1 className="flex lg:p-2 justify-center items-center text-2xl font-bold p-7">
-              SweetStay
+              EliteStay
             </h1>
 
             <a
               href="javascript:;"
-              className=" hidden lg:flex items-center gap-2 py-4  px-7 rounded-full shadow-md font-semibold hover:shadow-2xl text-white bg-[#4F46E5]"
+              className=" hidden lg:flex items-center gap-2 py-4  px-7 rounded-full shadow-md font-semibold hover:shadow-xl text-white bg-blue-600 hover:bg-blue-700 transition duration-300"
             >
               Contact us
               <svg
@@ -97,7 +97,7 @@ const Footer = () => {
               />
               <button
                 type="submit"
-                className="py-3.5 px-7 text-white bg-indigo-600 shadow-md rounded-full font-semibold hover:bg-indigo-700"
+                className="py-3.5 px-7 text-white bg-blue-600 shadow-md rounded-full font-semibold hover:bg-blue-700 transition duration-300"
               >
                 Subscribe
               </button>
@@ -108,7 +108,7 @@ const Footer = () => {
           <div className="py-9 border-t border-gray-200">
             <div className="flex items-center justify-center flex-col gap-8 lg:gap-0 lg:flex-row lg:justify-between">
               <span className="text-sm">
-                ©<a href="https://pagedone.io/">SweetStay</a> 2025, All rights
+                ©<a href="https://pagedone.io/">EliteStay</a> 2025, All rights
                 reserved.
               </span>
               <span className="items-center ">

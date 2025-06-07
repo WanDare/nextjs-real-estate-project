@@ -25,16 +25,18 @@ const agents = [
     phone: "281-235-5925",
     email: "polly.agent@example.com",
     agency: "Anchored Real Estate Group",
-    about: "Over 15 years helping clients sell homes for top value.",
+    about:
+      "Over 15 years helping clients sell homes for top value. Polly is a certified negotiation expert, consistently achieving above-market sales for her clients. She specializes in staging and marketing strategies that maximize property exposure and has a reputation for transparent communication throughout the selling process.",
   },
   {
     id: 2,
     name: "James Lee",
-    imageUrl: "https://randomuser.me/api/portraits/men/12.jpg",
+    imageUrl: "https://randomuser.me/api/portraits/men/10.jpg",
     phone: "310-478-4567",
     email: "james.lee@example.com",
     agency: "Urban Realty",
-    about: "Specialist in city properties with a strong negotiation record.",
+    about:
+      "Specialist in city properties with a strong negotiation record. James has closed over 200 urban property deals, leveraging deep market knowledge and digital marketing expertise. He is known for his responsiveness and ability to guide first-time sellers through every step.",
   },
   {
     id: 3,
@@ -43,7 +45,8 @@ const agents = [
     phone: "646-555-2100",
     email: "sofia.rivas@example.com",
     agency: "Skyline Brokers",
-    about: "Award-winning sales agent with attention to client needs.",
+    about:
+      "Award-winning sales agent with attention to client needs. Sofia has received multiple industry awards for customer satisfaction and sales volume. She provides personalized selling plans, multilingual support, and is highly rated for her follow-through and dedication.",
   },
   {
     id: 4,
@@ -52,16 +55,28 @@ const agents = [
     phone: "702-444-1234",
     email: "david.chan@example.com",
     agency: "Golden Homes",
-    about: "Expert in luxury and investment properties.",
+    about:
+      "Expert in luxury and investment properties. David brings over a decade of experience in high-end real estate, offering tailored marketing for luxury listings and in-depth investment analysis. He is trusted by repeat clients for his discretion and market insight.",
   },
   {
     id: 5,
     name: "Linda Smith",
-    imageUrl: "https://randomuser.me/api/portraits/women/66.jpg",
+    imageUrl: "https://randomuser.me/api/portraits/women/52.jpg",
     phone: "213-555-7890",
     email: "linda.smith@example.com",
     agency: "HomeFinders Realty",
-    about: "Known for dedicated service and quick sales.",
+    about:
+      "Known for dedicated service and quick sales. Linda has a proven track record of selling homes faster than the market average. She excels at pricing strategies, open house events, and provides sellers with regular updates and honest feedback.",
+  },
+  {
+    id: 6,
+    name: "Laura Jane",
+    imageUrl: "https://randomuser.me/api/portraits/women/19.jpg",
+    phone: "112-555-7790",
+    email: "laura.jane@example.com",
+    agency: "HomeFinders Realty",
+    about:
+      "Known for dedicated service and quick sales. Laura is praised for her attention to detail, proactive communication, and ability to coordinate seamless transactions. She offers complimentary home evaluations and custom marketing plans for each client.",
   },
 ];
 
@@ -132,16 +147,16 @@ export default function SellPage() {
   return (
     <main className="min-h-[80vh] flex flex-col items-center p-6">
       <h1 className="text-2xl font-bold mb-6">Choose an Agent to Sell With</h1>
-      <div className="flex flex-wrap justify-center gap-6 w-full max-w-4xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
         {agents.map((agent) => (
           <Card
             key={agent.id}
             isPressable
             shadow="sm"
-            className="min-w-[260px] max-w-[320px] transition-all duration-200 hover:scale-105 hover:border-indigo-400 border-2"
+            className="min-w-[260px] max-w-[320px] h-[370px] flex flex-col justify-between transition-all duration-200 hover:scale-105 hover:border-indigo-400 border-2 mx-auto"
             onPress={() => handleAgentSelect(agent)}
           >
-            <CardBody className="flex flex-col items-center gap-2 py-6">
+            <CardBody className="flex flex-col items-center gap-2 py-6 flex-1 w-full">
               <Image
                 src={agent.imageUrl}
                 width={86}
@@ -152,7 +167,9 @@ export default function SellPage() {
               <h3 className="text-lg font-bold">{agent.name}</h3>
               <p className="text-xs text-gray-500">{agent.agency}</p>
               <p className="text-xs">{agent.phone}</p>
-              <p className="text-xs italic mt-1">{agent.about}</p>
+              <p className="text-xs italic mt-1 line-clamp-3 text-center">
+                {agent.about}
+              </p>
             </CardBody>
             <CardFooter className="justify-center">
               <Button

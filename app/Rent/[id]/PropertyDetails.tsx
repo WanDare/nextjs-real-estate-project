@@ -4,6 +4,7 @@ import SaveShare from "@/components/SaveShare";
 import { useState } from "react";
 import Image from "next/image";
 import { Property } from "@/types/property";
+import RequestDetailsBox from "@/components/RequestDetailsBox";
 
 type PropertyDetailsProps = {
   property: Property;
@@ -19,7 +20,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
   const availableDate = property.availableDate || "Immediately";
 
   return (
-    <main className="p-2">
+    <main className="p-2 bg-gray-50 min-h-screen w-full">
       {/* Tabs for navigation */}
       <div className="tabs-container flex flex-wrap sm:flex-nowrap font-medium text-xs sm:text-sm md:text-base justify-between border-b border-gray-300 mb-4 ">
         <button
@@ -64,9 +65,10 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
         </button>
       </div>
 
-      <div className="flex">
+      {/* Property Main Image */}
+      <div className="flex w-full mb-4">
         <Image
-          className="rounded-md w-full h-[400px] object-cover"
+          className="rounded-md w-full h-[600px] object-cover"
           src={property.imageUrl}
           alt={property.title}
           width={1200}
@@ -74,255 +76,266 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
         />
       </div>
 
-      <div className="py-4">
-        {/* Overview Section */}
-        <section
-          id="overview"
-          className="p-6 rounded-xl border-2 mb-4 shadow-md"
-        >
-          {/* Price and Location */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-3xl font-bold mb-2 text-blue-700">
-                USD {property.price.toLocaleString()}{" "}
-                <span className="text-lg font-normal text-gray-500">
-                  / month
+      {/* Main Content and Request Details Side by Side */}
+      <div className="py-4 flex flex-col lg:flex-row gap-8 w-full">
+        {/* Left: Main Content */}
+        <div className="flex-1 min-w-0">
+          {/* Overview Section */}
+          <section
+            id="overview"
+            className="p-6 rounded-xl border-2 mb-4 shadow-md bg-white"
+          >
+            {/* Price and Location */}
+            <div className="mb-4">
+              <div className="flex items-center justify-between gap-4 flex-wrap">
+                <h2 className="text-3xl font-bold mb-2 text-blue-700">
+                  USD {property.price.toLocaleString()}{" "}
+                  <span className="text-lg font-normal text-gray-500">
+                    / month
+                  </span>
+                </h2>
+                <span className="px-3 py-1 text-xs bg-green-100 text-green-800 rounded-full font-semibold">
+                  For Rent
                 </span>
-              </h2>
-              <span className="px-3 py-1 text-xs bg-green-100 text-green-800 rounded-full font-semibold">
-                For Rent
-              </span>
-              <SaveShare />
+                <SaveShare />
+              </div>
+              <p className="text-gray-700">{property.location}</p>
             </div>
-            <p className="text-gray-700">{property.location}</p>
-          </div>
 
-          {/* Beds, Baths, and Sqft */}
-          <div className="flex items-center justify-between border-t border-b py-4 border-gray-300">
-            <div className="flex flex-col items-center text-center">
-              <h3 className="text-xl font-bold">{property.bedrooms}</h3>
-              <p>
-                Beds <BedDouble className="inline ml-1" size={18} />
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <h3 className="text-xl font-bold">{property.bathrooms}</h3>
-              <p>Baths</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <h3 className="text-xl font-bold">
-                {property.sqft.toLocaleString()}
-              </h3>
-              <p>m²</p>
-            </div>
-          </div>
-
-          {/* Rental Details */}
-          <div className="grid grid-cols-2 gap-4 mt-4 text-sm mb-6">
-            <div className="flex items-center gap-2">
-              <House />
-              <p>{property.propertyType}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Hammer />
-              <p>Built in {property.YearBuilt}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Ruler />
-              <p>{property.LotSize} m²</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Ruler />
-              <p>Lease Term: {leaseTerm}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Ruler />
-              <p>Deposit: USD {deposit.toLocaleString()}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Ruler />
-              <p>Available: {availableDate}</p>
-            </div>
-          </div>
-
-          {/* Property Description Section */}
-          <section className="border-t border-b border-gray-300">
-            <h2 className="text-xl font-bold py-6">What's special</h2>
-            <div className="flex gap-2 p-2 text-black flex-wrap">
-              {property.architecturalStyle && (
-                <p className="bg-[#F1F1F4] rounded-sm p-1">
-                  {property.architecturalStyle}
+            {/* Beds, Baths, and Sqft */}
+            <div className="flex items-center justify-between border-t border-b py-4 border-gray-300">
+              <div className="flex flex-col items-center text-center">
+                <h3 className="text-xl font-bold">{property.bedrooms}</h3>
+                <p>
+                  Beds <BedDouble className="inline ml-1" size={18} />
                 </p>
-              )}
-              {property.exterior && (
-                <p className="bg-[#F1F1F4] rounded-sm p-1">
-                  {property.exterior}
-                </p>
-              )}
-              {property.outdoorAmenities && (
-                <p className="bg-[#F1F1F4] rounded-sm p-1">
-                  {property.outdoorAmenities}
-                </p>
-              )}
-              {property.indoorFeatures && (
-                <p className="bg-[#F1F1F4] rounded-sm p-1">
-                  {property.indoorFeatures}
-                </p>
-              )}
-              {property.propertyType && (
-                <p className="bg-[#F1F1F4] rounded-sm p-1">
-                  {property.propertyType}
-                </p>
-              )}
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <h3 className="text-xl font-bold">{property.bathrooms}</h3>
+                <p>Baths</p>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <h3 className="text-xl font-bold">
+                  {property.sqft.toLocaleString()}
+                </h3>
+                <p>m²</p>
+              </div>
             </div>
 
-            <p>
-              {showMore
-                ? property.description
-                : property.description.slice(0, 200) + "..."}
-            </p>
-            <button
-              onClick={toggleShowMore}
-              className="flex items-center text-blue-500 underline mt-2 transition-transform"
-            >
-              {showMore ? "Show Less" : "Show More"}
-              <ChevronDown
-                className={`ml-1 transition-transform ${
-                  showMore ? "rotate-180" : "rotate-0"
-                }`}
-                size={16}
-              />
-            </button>
-
-            <div className="flex gap-2 py-2 text-xs text-gray-500">
-              |<p>Now on MHK-RealEstate</p>|<p>200 views</p>|<p>19 saves</p>
+            {/* Rental Details */}
+            <div className="grid grid-cols-2 gap-4 mt-4 text-sm mb-6">
+              <div className="flex items-center gap-2">
+                <House />
+                <p>{property.propertyType}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Hammer />
+                <p>Built in {property.YearBuilt}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Ruler />
+                <p>{property.LotSize} m²</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Ruler />
+                <p>Lease Term: {leaseTerm}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Ruler />
+                <p>Deposit: USD {deposit.toLocaleString()}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Ruler />
+                <p>Available: {availableDate}</p>
+              </div>
             </div>
-            <ol className="py-2 text-xs text-gray-500">
-              <li>MHK last checked: 13 hours ago</li>
-              <li>Listing updated: January 25, 2025 at 08:00pm</li>
-              <li>
-                Listed by: Polly Grueso TREC #0742460 281-235-5925, Anchored
-                Real Estate Group
-              </li>
-              <li className="py-2">Source: HAR, MLS#: 89058153</li>
-            </ol>
-          </section>
-        </section>
 
-        {/* Facts & features */}
-        <section
-          id="Facts & features"
-          className="flex p-6 rounded-xl border-2 shadow-md mb-4 items-start justify-between"
-        >
-          {/* Left Column */}
-          <div className="w-1/2 pr-4">
-            <h1 className="text-xl font-bold mb-2">Facts & Features</h1>
-            <h3 className="font-semibold text-lg">Bedrooms & Bathrooms</h3>
-            <ul className="list-disc list-inside">
-              <li>Bedrooms: {property.bedrooms}</li>
-              <li>Bathrooms: {property.bathrooms}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Rooms</h3>
-            <ul className="list-disc list-inside">
-              <li className="gap-2 p-2">Room types: {property.rooms}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Heating</h3>
-            <ul className="list-disc list-inside">
-              <li>{property.heatingFuel}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Cooling</h3>
-            <ul className="list-disc list-inside">
-              <li>{property.coolingType}</li>
-            </ul>
-          </div>
-
-          {/* Right Column */}
-          <div className="w-1/2 pl-4">
-            <h3 className="font-semibold text-lg">Appliances</h3>
-            <ul className="list-disc list-inside">
-              <li>{property.rooms}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Features</h3>
-            <ul className="list-disc list-inside">
-              <li>{property.indoorFeatures}</li>
-            </ul>
-
-            <h3 className="font-semibold text-lg mt-4">Interior Area</h3>
-            <ul className="list-disc list-inside">
-              <li>
-                Total structure area: {property.sqft.toLocaleString()} sqft
-              </li>
-              <li>
-                Total interior livable area: {property.sqft.toLocaleString()}{" "}
-                sqft
-              </li>
-            </ul>
-            <h3 className="font-semibold text-lg mt-4">Rental Details</h3>
-            <ul className="list-disc list-inside">
-              <li>Lease Term: {leaseTerm}</li>
-              <li>Deposit: USD {deposit.toLocaleString()}</li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Rental Market Value Section */}
-        <section
-          id="Rental Market"
-          className="p-4 rounded-xl border-2 mb-4 shadow-md"
-        >
-          <h2 className="text-2xl font-bold text-blue-700 mb-4">
-            Estimated Rental Market Value
-          </h2>
-
-          {/* Three-Column Overview */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-            {/* Rent Estimate */}
-            <div className="p-4 border rounded-md text-center">
-              <p className="font-semibold">Market rent</p>
-              <p className="text-gray-500">
-                USD {property.price.toLocaleString()}/mo
-              </p>
-            </div>
-            {/* Estimated Range */}
-            <div className="p-4 border rounded-md text-center">
-              <p className="font-semibold">Estimated rent range</p>
-              <p className="text-gray-500">Not available</p>
-            </div>
-            {/* Availability */}
-            <div className="p-4 border rounded-md text-center">
-              <p className="font-semibold">Available from</p>
-              <p className="text-gray-500">{availableDate}</p>
-            </div>
-          </div>
-
-          {/* Price History */}
-          <h3 className="text-xl font-bold mb-2">Rental History</h3>
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-gray-300 text-gray-600 font-semibold">
-                <th className="py-2 px-2 w-1/4">Date</th>
-                <th className="py-2 px-2 w-1/4">Event</th>
-                <th className="py-2 px-2 w-1/4">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-200">
-                <td className="py-3 px-2">1/25/2025</td>
-                <td className="py-3 px-2">Listed for rent</td>
-                <td className="py-3 px-2">
-                  <p>USD {property.price.toLocaleString()}/mo</p>
-                  <p className="text-sm text-gray-500">
-                    USD {(property.price / property.sqft).toFixed(2)}/sqft
+            {/* Property Description Section */}
+            <section className="border-t border-b border-gray-300">
+              <h2 className="text-xl font-bold py-6">What's special</h2>
+              <div className="flex gap-2 p-2 text-black flex-wrap">
+                {property.architecturalStyle && (
+                  <p className="bg-[#F1F1F4] rounded-sm p-1">
+                    {property.architecturalStyle}
                   </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+                )}
+                {property.exterior && (
+                  <p className="bg-[#F1F1F4] rounded-sm p-1">
+                    {property.exterior}
+                  </p>
+                )}
+                {property.outdoorAmenities && (
+                  <p className="bg-[#F1F1F4] rounded-sm p-1">
+                    {property.outdoorAmenities}
+                  </p>
+                )}
+                {property.indoorFeatures && (
+                  <p className="bg-[#F1F1F4] rounded-sm p-1">
+                    {property.indoorFeatures}
+                  </p>
+                )}
+                {property.propertyType && (
+                  <p className="bg-[#F1F1F4] rounded-sm p-1">
+                    {property.propertyType}
+                  </p>
+                )}
+              </div>
+
+              <p>
+                {showMore
+                  ? property.description
+                  : property.description.slice(0, 200) + "..."}
+              </p>
+              <button
+                onClick={toggleShowMore}
+                className="flex items-center text-blue-500 underline mt-2 transition-transform"
+              >
+                {showMore ? "Show Less" : "Show More"}
+                <ChevronDown
+                  className={`ml-1 transition-transform ${
+                    showMore ? "rotate-180" : "rotate-0"
+                  }`}
+                  size={16}
+                />
+              </button>
+
+              <div className="flex gap-2 py-2 text-xs text-gray-500">
+                |<p>Now on MHK-RealEstate</p>|<p>200 views</p>|<p>19 saves</p>
+              </div>
+              <ol className="py-2 text-xs text-gray-500">
+                <li>MHK last checked: 13 hours ago</li>
+                <li>Listing updated: January 25, 2025 at 08:00pm</li>
+                <li>
+                  Listed by: Polly Grueso TREC #0742460 281-235-5925, Anchored
+                  Real Estate Group
+                </li>
+                <li className="py-2">Source: HAR, MLS#: 89058153</li>
+              </ol>
+            </section>
+          </section>
+
+          {/* Facts & features */}
+          <section
+            id="Facts & features"
+            className="flex p-6 rounded-xl border-2 shadow-md mb-4 items-start justify-between bg-white"
+          >
+            {/* Left Column */}
+            <div className="w-1/2 pr-4">
+              <h1 className="text-xl font-bold mb-2">Facts & Features</h1>
+              <h3 className="font-semibold text-lg">Bedrooms & Bathrooms</h3>
+              <ul className="list-disc list-inside">
+                <li>Bedrooms: {property.bedrooms}</li>
+                <li>Bathrooms: {property.bathrooms}</li>
+              </ul>
+
+              <h3 className="font-semibold text-lg mt-4">Rooms</h3>
+              <ul className="list-disc list-inside">
+                <li className="gap-2 p-2">Room types: {property.rooms}</li>
+              </ul>
+
+              <h3 className="font-semibold text-lg mt-4">Heating</h3>
+              <ul className="list-disc list-inside">
+                <li>{property.heatingFuel}</li>
+              </ul>
+
+              <h3 className="font-semibold text-lg mt-4">Cooling</h3>
+              <ul className="list-disc list-inside">
+                <li>{property.coolingType}</li>
+              </ul>
+            </div>
+
+            {/* Right Column */}
+            <div className="w-1/2 pl-4">
+              <h3 className="font-semibold text-lg">Appliances</h3>
+              <ul className="list-disc list-inside">
+                <li>{property.rooms}</li>
+              </ul>
+
+              <h3 className="font-semibold text-lg mt-4">Features</h3>
+              <ul className="list-disc list-inside">
+                <li>{property.indoorFeatures}</li>
+              </ul>
+
+              <h3 className="font-semibold text-lg mt-4">Interior Area</h3>
+              <ul className="list-disc list-inside">
+                <li>
+                  Total structure area: {property.sqft.toLocaleString()} sqft
+                </li>
+                <li>
+                  Total interior livable area: {property.sqft.toLocaleString()}{" "}
+                  sqft
+                </li>
+              </ul>
+              <h3 className="font-semibold text-lg mt-4">Rental Details</h3>
+              <ul className="list-disc list-inside">
+                <li>Lease Term: {leaseTerm}</li>
+                <li>Deposit: USD {deposit.toLocaleString()}</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Rental Market Value Section */}
+          <section
+            id="Rental Market"
+            className="p-4 rounded-xl border-2 mb-4 shadow-md bg-white"
+          >
+            <h2 className="text-2xl font-bold text-blue-700 mb-4">
+              Estimated Rental Market Value
+            </h2>
+
+            {/* Three-Column Overview */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              {/* Rent Estimate */}
+              <div className="p-4 border rounded-md text-center">
+                <p className="font-semibold">Market rent</p>
+                <p className="text-gray-500">
+                  USD {property.price.toLocaleString()}/mo
+                </p>
+              </div>
+              {/* Estimated Range */}
+              <div className="p-4 border rounded-md text-center">
+                <p className="font-semibold">Estimated rent range</p>
+                <p className="text-gray-500">Not available</p>
+              </div>
+              {/* Availability */}
+              <div className="p-4 border rounded-md text-center">
+                <p className="font-semibold">Available from</p>
+                <p className="text-gray-500">{availableDate}</p>
+              </div>
+            </div>
+
+            {/* Price History */}
+            <h3 className="text-xl font-bold mb-2">Rental History</h3>
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-gray-300 text-gray-600 font-semibold">
+                  <th className="py-2 px-2 w-1/4">Date</th>
+                  <th className="py-2 px-2 w-1/4">Event</th>
+                  <th className="py-2 px-2 w-1/4">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200">
+                  <td className="py-3 px-2">1/25/2025</td>
+                  <td className="py-3 px-2">Listed for rent</td>
+                  <td className="py-3 px-2">
+                    <p>USD {property.price.toLocaleString()}/mo</p>
+                    <p className="text-sm text-gray-500">
+                      USD {(property.price / property.sqft).toFixed(2)}/sqft
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+
+        {/* Right: Request Details Box (Sticky on Desktop) */}
+        <div className="w-full lg:w-[400px] flex-shrink-0">
+          <div className="sticky top-8">
+            <RequestDetailsBox />
+          </div>
+        </div>
       </div>
     </main>
   );
