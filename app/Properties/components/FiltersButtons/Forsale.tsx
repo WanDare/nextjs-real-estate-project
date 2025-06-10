@@ -18,6 +18,7 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import { MailOpen } from "lucide-react";
 
 export default function PropertySearchBar() {
@@ -25,6 +26,7 @@ export default function PropertySearchBar() {
   const [isMounted, setIsMounted] = useState(false);
   const [isMediumScreen, setIsMediumScreen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
 
   const [isPriceOpen, setIsPriceOpen] = useState(false);
   const [minPrice, setMinPrice] = useState("No Min");
@@ -162,7 +164,7 @@ export default function PropertySearchBar() {
             </PopoverContent>
           </Popover>
 
-          {/* <Popover>
+          <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline">For Sale</Button>
             </PopoverTrigger>
@@ -183,14 +185,11 @@ export default function PropertySearchBar() {
                       <Label htmlFor="r3">Compact</Label>
                     </div>
                   </RadioGroup>
-
                 </div>
-
-
                 <Button className="bg-blue-600 w-full" variant="outline">apply</Button>
               </TooltipProvider>
             </PopoverContent>
-          </Popover> */}
+          </Popover>
         </>
       )}
 
@@ -207,10 +206,9 @@ export default function PropertySearchBar() {
         />
         <PropertyFilter />
         {/* Save Search Button */}
-        <Button color="primary">Saved Favourite</Button>
-        <div className="md:block hidden">
-          <MailOpen />
-        </div>
+        <Button color="primary" onClick={() => router.push("/saved")}>
+          Saved Favourite
+        </Button>
       </div>
     </div>
   );

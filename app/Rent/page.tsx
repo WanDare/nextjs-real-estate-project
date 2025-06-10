@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Input,
   Pagination,
@@ -16,6 +16,7 @@ import {
   Chip,
 } from "@nextui-org/react";
 import { HeartIcon } from "../Properties/icons/HeartIcon";
+import { FilledHeartIcon } from "@/components/icons/FilledHeartIcon";
 import { Spinner } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { ChevronIcon } from "../Properties/icons/ChevronIcon";
@@ -32,7 +33,19 @@ export default function RentPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading] = useState(false);
+  const [savedPropertyIds, setSavedPropertyIds] = useState<number[]>([]);
   const router = useRouter();
+
+  // Load saved from localStorage on mount
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("savedPropertyIds") || "[]");
+    setSavedPropertyIds(saved);
+  }, []);
+
+  // Save to localStorage whenever savedPropertyIds changes
+  useEffect(() => {
+    localStorage.setItem("savedPropertyIds", JSON.stringify(savedPropertyIds));
+  }, [savedPropertyIds]);
 
   // Filter for rent properties only
   const filteredProperties = mockProperties
@@ -47,6 +60,18 @@ export default function RentPage() {
     (currentPage - 1) * 10,
     currentPage * 10
   );
+
+  const handleToggleFavourite = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    propertyId: number
+  ) => {
+    e.stopPropagation();
+    setSavedPropertyIds((prev) =>
+      prev.includes(propertyId)
+        ? prev.filter((id) => id !== propertyId)
+        : [...prev, propertyId]
+    );
+  };
 
   const renderItem = ({
     key,
@@ -158,9 +183,13 @@ export default function RentPage() {
                 color="danger"
                 aria-label="Like"
                 className="absolute top-2 right-2 z-10"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => handleToggleFavourite(e, property.id)}
               >
-                <HeartIcon size={20} />
+                {savedPropertyIds.includes(property.id) ? (
+                  <FilledHeartIcon size={20} />
+                ) : (
+                  <HeartIcon size={20} />
+                )}
               </Button>
               <CardBody className="overflow-visible p-3">
                 <p className="text-xl text-start">

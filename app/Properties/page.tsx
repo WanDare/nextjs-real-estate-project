@@ -1,13 +1,10 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Input,
   Pagination,
   PaginationItemRenderProps,
   PaginationItemType,
-} from "@nextui-org/react";
-import {
   Card,
   CardBody,
   CardFooter,
@@ -16,14 +13,14 @@ import {
   Chip,
 } from "@nextui-org/react";
 import { HeartIcon } from "./icons/HeartIcon";
+import { FilledHeartIcon } from "@/components/icons/FilledHeartIcon";
 import { Spinner } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { ChevronIcon } from "./icons/ChevronIcon";
-import { SearchIcon } from "@/app/Properties/icons/SearchIcon";
-import Forsale from "../Properties/components/FiltersButtons/Forsale";
 import { mockProperties, Property } from "./mockProperties";
+import Forsale from "./components/FiltersButtons/Forsale";
+import { SearchIcon } from "@/components/icons";
 
-// Helper to format price with commas
 function formatPrice(price: number) {
   return price.toLocaleString("en-US");
 }
@@ -32,19 +29,39 @@ export default function Hero() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading] = useState(false);
+  const [savedPropertyIds, setSavedPropertyIds] = useState<number[]>([]);
   const router = useRouter();
 
-  // Filter directly from mockProperties
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("savedPropertyIds") || "[]");
+    setSavedPropertyIds(saved);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("savedPropertyIds", JSON.stringify(savedPropertyIds));
+  }, [savedPropertyIds]);
+
   const filteredProperties = mockProperties.filter(
     (property) =>
       property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       property.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
   const propertiesToShow = filteredProperties.slice(
     (currentPage - 1) * 10,
     currentPage * 10
   );
+
+  const handleToggleFavourite = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    propertyId: number
+  ) => {
+    e.stopPropagation();
+    setSavedPropertyIds((prev) =>
+      prev.includes(propertyId)
+        ? prev.filter((id) => id !== propertyId)
+        : [...prev, propertyId]
+    );
+  };
 
   const renderItem = ({
     key,
@@ -99,6 +116,7 @@ export default function Hero() {
         </div>
       )}
 
+      {/* Search bar omitted for brevity. Add your own as needed */}
       <div className="w-full px-4 py-2 flex flex-row items-center justify-between gap-4 border-t border-b border-gray-700">
         <div className="flex-grow md:w-auto relative">
           <Input
@@ -156,9 +174,13 @@ export default function Hero() {
                 color="danger"
                 aria-label="Like"
                 className="absolute top-2 right-2 z-10"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => handleToggleFavourite(e, property.id)}
               >
-                <HeartIcon size={20} />
+                {savedPropertyIds.includes(property.id) ? (
+                  <FilledHeartIcon size={20} />
+                ) : (
+                  <HeartIcon size={20} />
+                )}
               </Button>
               <CardBody className="overflow-visible p-3">
                 <p className="text-xl text-start">
