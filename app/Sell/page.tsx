@@ -1,27 +1,13 @@
 "use client";
-import { SetStateAction, useState } from "react";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  Button,
-  Image,
-  Input,
-  Textarea,
-  Select,
-  SelectItem,
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "@nextui-org/react";
+import { useRouter } from "next/navigation";
+import { Card, CardBody, CardFooter, Button, Image } from "@nextui-org/react";
 
 const agents = [
   {
     id: 1,
     name: "Polly Grueso",
-    imageUrl: "https://randomuser.me/api/portraits/women/44.jpg",
+    imageUrl:
+      "https://imgcdn.stablediffusionweb.com/2024/11/6/8708a5a1-2092-49ef-bb2b-d8c9567f3595.jpg",
     phone: "281-235-5925",
     email: "polly.agent@example.com",
     agency: "Anchored Real Estate Group",
@@ -30,8 +16,9 @@ const agents = [
   },
   {
     id: 2,
-    name: "James Lee",
-    imageUrl: "https://randomuser.me/api/portraits/men/10.jpg",
+    name: "Jennifer lorez",
+    imageUrl:
+      "https://imgcdn.stablediffusionweb.com/2024/10/22/b749b5f3-f64e-4dde-9182-2254b29486c1.jpg",
     phone: "310-478-4567",
     email: "james.lee@example.com",
     agency: "Urban Realty",
@@ -41,7 +28,8 @@ const agents = [
   {
     id: 3,
     name: "Sofia Rivas",
-    imageUrl: "https://randomuser.me/api/portraits/women/48.jpg",
+    imageUrl:
+      "https://i.pinimg.com/originals/cd/07/8c/cd078cd628bf15fa05303482a5eb6d31.png",
     phone: "646-555-2100",
     email: "sofia.rivas@example.com",
     agency: "Skyline Brokers",
@@ -50,8 +38,9 @@ const agents = [
   },
   {
     id: 4,
-    name: "David Chan",
-    imageUrl: "https://randomuser.me/api/portraits/men/41.jpg",
+    name: "Amenda Chan",
+    imageUrl:
+      "https://img.freepik.com/premium-photo/professional-headshot-indian-woman-business-suit_943281-26035.jpg",
     phone: "702-444-1234",
     email: "david.chan@example.com",
     agency: "Golden Homes",
@@ -61,7 +50,8 @@ const agents = [
   {
     id: 5,
     name: "Linda Smith",
-    imageUrl: "https://randomuser.me/api/portraits/women/52.jpg",
+    imageUrl:
+      "https://media.licdn.com/dms/image/v2/C4E12AQFT7GlBaqw0kg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520242448808?e=2147483647&v=beta&t=dbUghHgF29FEQi7lQSk4WbgGB-GBhrxgbINhnMfwgxY",
     phone: "213-555-7890",
     email: "linda.smith@example.com",
     agency: "HomeFinders Realty",
@@ -71,7 +61,8 @@ const agents = [
   {
     id: 6,
     name: "Laura Jane",
-    imageUrl: "https://randomuser.me/api/portraits/women/19.jpg",
+    imageUrl:
+      "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://media.easy-peasy.ai/17b1593d-fecb-4684-bd4f-09f4fe3949b9/faa90aa0-3dfa-4756-844e-e9a4eb037880.png",
     phone: "112-555-7790",
     email: "laura.jane@example.com",
     agency: "HomeFinders Realty",
@@ -80,69 +71,8 @@ const agents = [
   },
 ];
 
-const propertyTypes = [
-  { key: "House", label: "House" },
-  { key: "Condo", label: "Condo" },
-  { key: "Land", label: "Land" },
-  { key: "Townhouse", label: "Townhouse" },
-  { key: "Apartment", label: "Apartment" },
-  { key: "Other", label: "Other" },
-];
-
-type Agent = {
-  id: number;
-  name: string;
-  imageUrl: string;
-  phone: string;
-  email: string;
-  agency: string;
-  about: string;
-};
-
 export default function SellPage() {
-  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-    askingPrice: "",
-    bedrooms: "",
-    bathrooms: "",
-    propertyType: "",
-    details: "",
-    contactMethod: "email",
-  });
-
-  const handleAgentSelect = (agent: SetStateAction<Agent | null>) => {
-    setSelectedAgent(agent);
-    setModalOpen(true);
-    setSubmitted(false);
-    setForm({
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      askingPrice: "",
-      bedrooms: "",
-      bathrooms: "",
-      propertyType: "",
-      details: "",
-      contactMethod: "email",
-    });
-  };
-
-  const handleModalClose = () => {
-    setModalOpen(false);
-    setSelectedAgent(null);
-    setSubmitted(false);
-  };
-
-  const handleInput = (e: any) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const router = useRouter();
 
   return (
     <main className="min-h-[80vh] flex flex-col items-center p-6">
@@ -154,7 +84,7 @@ export default function SellPage() {
             isPressable
             shadow="sm"
             className="min-w-[260px] max-w-[320px] h-[370px] flex flex-col justify-between transition-all duration-200 hover:scale-105 hover:border-indigo-400 border-2 mx-auto"
-            onPress={() => handleAgentSelect(agent)}
+            onPress={() => router.push(`/Sell/agent/${agent.id}`)}
           >
             <CardBody className="flex flex-col items-center gap-2 py-6 flex-1 w-full">
               <Image
@@ -178,7 +108,7 @@ export default function SellPage() {
                 variant="solid"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleAgentSelect(agent);
+                  router.push(`/Sell/agent/${agent.id}`);
                 }}
               >
                 Sell with {agent.name.split(" ")[0]}
@@ -187,191 +117,6 @@ export default function SellPage() {
           </Card>
         ))}
       </div>
-
-      {/* Modal for input info */}
-      <Modal
-        isOpen={modalOpen}
-        onClose={handleModalClose}
-        size="md"
-        placement="center"
-      >
-        <ModalContent className="!max-w-md w-full mx-auto">
-          <ModalHeader className="flex flex-col gap-1 items-center">
-            <Image
-              src={selectedAgent?.imageUrl}
-              width={60}
-              height={60}
-              alt={selectedAgent?.name}
-              className="rounded-full"
-            />
-            <span className="text-lg font-bold">{selectedAgent?.name}</span>
-            <span className="text-xs text-gray-500">
-              {selectedAgent?.agency}
-            </span>
-            <span className="text-xs text-gray-600">
-              {selectedAgent?.about}
-            </span>
-          </ModalHeader>
-
-          <ModalBody>
-            {!submitted ? (
-              <div className="w-full flex justify-center">
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSubmitted(true);
-                  }}
-                  className="space-y-3 max-w-md w-full max-h-[60vh] overflow-y-auto pr-2"
-                >
-                  <Input
-                    name="name"
-                    label="Your Name"
-                    isRequired
-                    value={form.name}
-                    onChange={handleInput}
-                    placeholder="Full Name"
-                  />
-                  <Input
-                    name="email"
-                    label="Email"
-                    type="email"
-                    isRequired
-                    value={form.email}
-                    onChange={handleInput}
-                    placeholder="your@email.com"
-                  />
-                  <Input
-                    name="phone"
-                    label="Phone"
-                    value={form.phone}
-                    onChange={handleInput}
-                    placeholder="e.g., 555-123-4567"
-                  />
-                  <Input
-                    name="address"
-                    label="Property Address"
-                    isRequired
-                    value={form.address}
-                    onChange={handleInput}
-                    placeholder="123 Main St, City"
-                  />
-                  <Input
-                    name="askingPrice"
-                    label="Asking Price (USD)"
-                    isRequired
-                    value={form.askingPrice}
-                    onChange={handleInput}
-                    placeholder="e.g. 350000"
-                  />
-                  <Input
-                    name="bedrooms"
-                    label="Bedrooms"
-                    type="number"
-                    value={form.bedrooms}
-                    onChange={handleInput}
-                    placeholder="Number of bedrooms"
-                  />
-                  <Input
-                    name="bathrooms"
-                    label="Bathrooms"
-                    type="number"
-                    value={form.bathrooms}
-                    onChange={handleInput}
-                    placeholder="Number of bathrooms"
-                  />
-                  <Select
-                    name="propertyType"
-                    label=""
-                    isRequired
-                    selectedKeys={form.propertyType ? [form.propertyType] : []}
-                    onSelectionChange={(keys) =>
-                      setForm((prev) => ({
-                        ...prev,
-                        propertyType: Array.from(keys)[0] as string,
-                      }))
-                    }
-                    placeholder="Select property type"
-                    className="w-full"
-                  >
-                    {propertyTypes.map((type) => (
-                      <SelectItem key={type.key} value={type.key}>
-                        {type.label}
-                      </SelectItem>
-                    ))}
-                  </Select>
-                  <Textarea
-                    name="details"
-                    label="Details (optional)"
-                    value={form.details}
-                    onChange={handleInput}
-                    placeholder="Share anything special about your property..."
-                    minRows={2}
-                  />
-                  <div className="flex flex-col gap-1">
-                    <span className="font-semibold">
-                      Preferred Contact Method
-                    </span>
-                    <div className="flex gap-4">
-                      <label className="flex items-center gap-1">
-                        <input
-                          type="radio"
-                          name="contactMethod"
-                          value="email"
-                          checked={form.contactMethod === "email"}
-                          onChange={handleInput}
-                        />
-                        Email
-                      </label>
-                      <label className="flex items-center gap-1">
-                        <input
-                          type="radio"
-                          name="contactMethod"
-                          value="phone"
-                          checked={form.contactMethod === "phone"}
-                          onChange={handleInput}
-                        />
-                        Phone
-                      </label>
-                    </div>
-                  </div>
-                  <Button className="w-full" color="primary" type="submit">
-                    Submit
-                  </Button>
-                </form>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center text-center py-8">
-                <svg
-                  width={64}
-                  height={64}
-                  className="mb-2 text-green-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <p className="text-lg font-bold mb-2">Thank you!</p>
-                <p className="text-sm">
-                  Your property info has been sent to {selectedAgent?.name}. An
-                  agent will contact you soon.
-                </p>
-              </div>
-            )}
-          </ModalBody>
-
-          <ModalFooter>
-            <Button variant="light" color="danger" onClick={handleModalClose}>
-              {submitted ? "Close" : "Cancel"}
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </main>
   );
 }
