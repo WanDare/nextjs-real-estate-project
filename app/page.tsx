@@ -57,7 +57,7 @@ export default async function Home() {
           </div>
 
           {/* /* Your search input */}
-          <div className="mt-8 rounded-xl">{searchInput}</div>
+          {/* <div className="mt-8 rounded-xl">{searchInput}</div> */}
         </section>
 
         {/* /* Midsections or additional content below the hero */}

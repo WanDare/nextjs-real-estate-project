@@ -189,8 +189,13 @@ export default function SellPage() {
       </div>
 
       {/* Modal for input info */}
-      <Modal isOpen={modalOpen} onClose={handleModalClose} size="lg">
-        <ModalContent>
+      <Modal
+        isOpen={modalOpen}
+        onClose={handleModalClose}
+        size="md"
+        placement="center"
+      >
+        <ModalContent className="!max-w-md w-full mx-auto">
           <ModalHeader className="flex flex-col gap-1 items-center">
             <Image
               src={selectedAgent?.imageUrl}
@@ -207,130 +212,133 @@ export default function SellPage() {
               {selectedAgent?.about}
             </span>
           </ModalHeader>
+
           <ModalBody>
             {!submitted ? (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSubmitted(true);
-                }}
-                className="space-y-3 max-h-[60vh] overflow-y-auto pr-2"
-              >
-                <Input
-                  name="name"
-                  label="Your Name"
-                  isRequired
-                  value={form.name}
-                  onChange={handleInput}
-                  placeholder="Full Name"
-                />
-                <Input
-                  name="email"
-                  label="Email"
-                  type="email"
-                  isRequired
-                  value={form.email}
-                  onChange={handleInput}
-                  placeholder="your@email.com"
-                />
-                <Input
-                  name="phone"
-                  label="Phone"
-                  value={form.phone}
-                  onChange={handleInput}
-                  placeholder="e.g., 555-123-4567"
-                />
-                <Input
-                  name="address"
-                  label="Property Address"
-                  isRequired
-                  value={form.address}
-                  onChange={handleInput}
-                  placeholder="123 Main St, City"
-                />
-                <Input
-                  name="askingPrice"
-                  label="Asking Price (USD)"
-                  isRequired
-                  value={form.askingPrice}
-                  onChange={handleInput}
-                  placeholder="e.g. 350000"
-                />
-                <Input
-                  name="bedrooms"
-                  label="Bedrooms"
-                  type="number"
-                  value={form.bedrooms}
-                  onChange={handleInput}
-                  placeholder="Number of bedrooms"
-                />
-                <Input
-                  name="bathrooms"
-                  label="Bathrooms"
-                  type="number"
-                  value={form.bathrooms}
-                  onChange={handleInput}
-                  placeholder="Number of bathrooms"
-                />
-                <Select
-                  name="propertyType"
-                  label=""
-                  isRequired
-                  selectedKeys={form.propertyType ? [form.propertyType] : []}
-                  onSelectionChange={(keys) =>
-                    setForm((prev) => ({
-                      ...prev,
-                      propertyType: Array.from(keys)[0] as string,
-                    }))
-                  }
-                  placeholder="Select property type"
-                  className="w-full"
+              <div className="w-full flex justify-center">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setSubmitted(true);
+                  }}
+                  className="space-y-3 max-w-md w-full max-h-[60vh] overflow-y-auto pr-2"
                 >
-                  {propertyTypes.map((type) => (
-                    <SelectItem key={type.key} value={type.key}>
-                      {type.label}
-                    </SelectItem>
-                  ))}
-                </Select>
-                <Textarea
-                  name="details"
-                  label="Details (optional)"
-                  value={form.details}
-                  onChange={handleInput}
-                  placeholder="Share anything special about your property..."
-                  minRows={2}
-                />
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold">
-                    Preferred Contact Method
-                  </span>
-                  <div className="flex gap-4">
-                    <label className="flex items-center gap-1">
-                      <input
-                        type="radio"
-                        name="contactMethod"
-                        value="email"
-                        checked={form.contactMethod === "email"}
-                        onChange={handleInput}
-                      />
-                      Email
-                    </label>
-                    <label className="flex items-center gap-1">
-                      <input
-                        type="radio"
-                        name="contactMethod"
-                        value="phone"
-                        checked={form.contactMethod === "phone"}
-                        onChange={handleInput}
-                      />
-                      Phone
-                    </label>
+                  <Input
+                    name="name"
+                    label="Your Name"
+                    isRequired
+                    value={form.name}
+                    onChange={handleInput}
+                    placeholder="Full Name"
+                  />
+                  <Input
+                    name="email"
+                    label="Email"
+                    type="email"
+                    isRequired
+                    value={form.email}
+                    onChange={handleInput}
+                    placeholder="your@email.com"
+                  />
+                  <Input
+                    name="phone"
+                    label="Phone"
+                    value={form.phone}
+                    onChange={handleInput}
+                    placeholder="e.g., 555-123-4567"
+                  />
+                  <Input
+                    name="address"
+                    label="Property Address"
+                    isRequired
+                    value={form.address}
+                    onChange={handleInput}
+                    placeholder="123 Main St, City"
+                  />
+                  <Input
+                    name="askingPrice"
+                    label="Asking Price (USD)"
+                    isRequired
+                    value={form.askingPrice}
+                    onChange={handleInput}
+                    placeholder="e.g. 350000"
+                  />
+                  <Input
+                    name="bedrooms"
+                    label="Bedrooms"
+                    type="number"
+                    value={form.bedrooms}
+                    onChange={handleInput}
+                    placeholder="Number of bedrooms"
+                  />
+                  <Input
+                    name="bathrooms"
+                    label="Bathrooms"
+                    type="number"
+                    value={form.bathrooms}
+                    onChange={handleInput}
+                    placeholder="Number of bathrooms"
+                  />
+                  <Select
+                    name="propertyType"
+                    label=""
+                    isRequired
+                    selectedKeys={form.propertyType ? [form.propertyType] : []}
+                    onSelectionChange={(keys) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        propertyType: Array.from(keys)[0] as string,
+                      }))
+                    }
+                    placeholder="Select property type"
+                    className="w-full"
+                  >
+                    {propertyTypes.map((type) => (
+                      <SelectItem key={type.key} value={type.key}>
+                        {type.label}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                  <Textarea
+                    name="details"
+                    label="Details (optional)"
+                    value={form.details}
+                    onChange={handleInput}
+                    placeholder="Share anything special about your property..."
+                    minRows={2}
+                  />
+                  <div className="flex flex-col gap-1">
+                    <span className="font-semibold">
+                      Preferred Contact Method
+                    </span>
+                    <div className="flex gap-4">
+                      <label className="flex items-center gap-1">
+                        <input
+                          type="radio"
+                          name="contactMethod"
+                          value="email"
+                          checked={form.contactMethod === "email"}
+                          onChange={handleInput}
+                        />
+                        Email
+                      </label>
+                      <label className="flex items-center gap-1">
+                        <input
+                          type="radio"
+                          name="contactMethod"
+                          value="phone"
+                          checked={form.contactMethod === "phone"}
+                          onChange={handleInput}
+                        />
+                        Phone
+                      </label>
+                    </div>
                   </div>
-                </div>
-                <Button className="w-full" color="primary" type="submit">
-                  Submit
-                </Button>
-              </form>
+                  <Button className="w-full" color="primary" type="submit">
+                    Submit
+                  </Button>
+                </form>
+              </div>
             ) : (
               <div className="flex flex-col items-center text-center py-8">
                 <svg
@@ -356,6 +364,7 @@ export default function SellPage() {
               </div>
             )}
           </ModalBody>
+
           <ModalFooter>
             <Button variant="light" color="danger" onClick={handleModalClose}>
               {submitted ? "Close" : "Cancel"}

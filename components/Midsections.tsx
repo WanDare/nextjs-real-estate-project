@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useTheme } from "next-themes"; // Import useTheme from next-themes
 
 const Midsections = () => {
@@ -14,6 +13,8 @@ const Midsections = () => {
     helpWith:
       "I'm interested in buying, selling or a free consult with a Redfin agent.",
   });
+
+  const [submitted, setSubmitted] = useState(false); // Track if form was submitted
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,15 +29,18 @@ const Midsections = () => {
     e.preventDefault();
     // Handle form submission logic
     console.log(formData);
+    setSubmitted(true); // Show the submitted message
   };
+
   return (
     <main>
+      {/* Services Section */}
       <section
         className={`py-16 px-4 sm:px-6 lg:px-8 ${
           theme === "dark"
             ? "bg-black-900 text-white border-white"
             : "bg-gray-100 text-black border-black"
-        }`} // Apply conditional styling based on theme
+        }`}
       >
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-semibold mb-8">Our Services</h2>
@@ -120,14 +124,14 @@ const Midsections = () => {
         </div>
       </section>
 
+      {/* Touring Homes Section */}
       <section
         className={`py-16 px-4 sm:px-6 lg:px-8 ${
           theme === "dark"
             ? "bg-black-900 text-white border-white"
             : "bg-gray-100 text-black border-black"
-        }`} // Apply conditional styling based on theme
+        }`}
       >
-        {" "}
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
           {/* Left side - Image */}
           <div className="flex-shrink-0 w-full lg:w-1/2">
@@ -156,14 +160,15 @@ const Midsections = () => {
           </div>
         </div>
       </section>
+
+      {/* Talk to Agent & Form Section */}
       <section
         className={`py-16 px-4 sm:px-6 lg:px-8 ${
           theme === "dark"
             ? "bg-black-900 text-white border-white"
             : "bg-gray-100 text-black border-black"
-        }`} // Apply conditional styling based on theme
+        }`}
       >
-        {" "}
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
           {/* Left side - Heading and Paragraph */}
           <div className="text-center lg:text-left lg:w-1/2">
@@ -174,93 +179,99 @@ const Midsections = () => {
             </p>
           </div>
 
-          {/* Right side - Form */}
+          {/* Right side - Form with Submission Message */}
           <div className="lg:w-1/2 w-full">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label
-                  htmlFor="location"
-                  className="block text-sm font-semibold  mb-2 focus:outline-none"
+            {!submitted ? (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label
+                    htmlFor="location"
+                    className="block text-sm font-semibold  mb-2 focus:outline-none"
+                  >
+                    Where are you searching for homes?
+                  </label>
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    className="w-full p-3 border rounded-md  focus:outline-none  "
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-semibold mb-2"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full p-3 border rounded-md  focus:outline-none "
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-semibold  focus:outline-none mb-2"
+                  >
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder=""
+                    className="w-full p-3 border rounded-md  focus:outline-none "
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="helpWith"
+                    className="block text-sm font-semibold  mb-2"
+                  >
+                    What can we help you with?
+                  </label>
+                  <textarea
+                    id="helpWith"
+                    name="helpWith"
+                    value={formData.helpWith}
+                    onChange={handleChange}
+                    className="w-full p-3 border rounded-md  focus:outline-none "
+                    rows={4}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 text-white  p-3 rounded-md hover:bg-blue-700 transition duration-300"
                 >
-                  Where are you searching for homes?
-                </label>
-                <input
-                  type="text"
-                  id="location"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  className="w-full p-3 border rounded-md  focus:outline-none  "
-                />
+                  Submit
+                </button>
+
+                <p className="text-xs 500 mt-2">
+                  You are creating a Redfin account and agree to our{" "}
+                  <a href="#" className="text-blue-500">
+                    privacy and policy
+                  </a>
+                  .
+                </p>
+              </form>
+            ) : (
+              <div className="mt-4 text-green-600 font-semibold text-center animate-fade-in">
+                ✅ Form submitted! Thank you, our agent will contact you soon.
               </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-semibold mb-2"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full p-3 border rounded-md  focus:outline-none "
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-semibold  focus:outline-none mb-2"
-                >
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder=""
-                  className="w-full p-3 border rounded-md  focus:outline-none "
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="helpWith"
-                  className="block text-sm font-semibold  mb-2"
-                >
-                  What can we help you with?
-                </label>
-                <textarea
-                  id="helpWith"
-                  name="helpWith"
-                  value={formData.helpWith}
-                  onChange={handleChange}
-                  className="w-full p-3 border rounded-md  focus:outline-none "
-                  rows={4}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white  p-3 rounded-md hover:bg-blue-700 transition duration-300"
-              >
-                Submit
-              </button>
-
-              <p className="text-xs 500 mt-2">
-                You are creating a Redfin account and agree to our{" "}
-                <a href="#" className="text-blue-500">
-                  privacy and policy
-                </a>
-                .
-              </p>
-            </form>
+            )}
           </div>
         </div>
       </section>
