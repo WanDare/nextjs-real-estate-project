@@ -40,7 +40,7 @@ const Footer = () => {
               EliteStay
             </h1>
 
-            <a
+            {/* <a
               href="javascript:;"
               className=" hidden lg:flex items-center gap-2 py-4  px-7 rounded-full shadow-md font-semibold hover:shadow-xl text-white bg-blue-600 hover:bg-blue-700 transition duration-300"
             >
@@ -60,7 +60,7 @@ const Footer = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-            </a>
+            </a> */}
           </div>
 
           {/* Dynamic Menu Section */}

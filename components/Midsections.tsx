@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { useTheme } from "next-themes"; // Import useTheme from next-themes
+import { useTheme } from "next-themes"; 
+import { CheckCircle2 } from "lucide-react";
 
 const Midsections = () => {
-  const { theme } = useTheme(); // Get the current theme (light or dark)
+  const { theme } = useTheme(); 
 
   const [formData, setFormData] = useState({
     location: "Phnom Penh",
@@ -14,7 +15,7 @@ const Midsections = () => {
       "I'm interested in buying, selling or a free consult with a Redfin agent.",
   });
 
-  const [submitted, setSubmitted] = useState(false); // Track if form was submitted
+  const [submitted, setSubmitted] = useState(false); 
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -27,9 +28,8 @@ const Midsections = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic
     console.log(formData);
-    setSubmitted(true); // Show the submitted message
+    setSubmitted(true); 
   };
 
   return (
@@ -268,8 +268,13 @@ const Midsections = () => {
                 </p>
               </form>
             ) : (
-              <div className="mt-4 text-green-600 font-semibold text-center animate-fade-in">
-                ✅ Form submitted! Thank you, our agent will contact you soon.
+              <div className="fixed bottom-8 right-8 z-50">
+                <div className="flex items-center gap-3 px-5 py-4 rounded-lg shadow-lg bg-green-500 text-white animate-slide-up">
+                  <CheckCircle2 className="w-6 h-6 text-white" />
+                  <p className="text-sm font-medium">
+                    Form submitted! Thank you, our agent will contact you soon.
+                  </p>
+                </div>
               </div>
             )}
           </div>

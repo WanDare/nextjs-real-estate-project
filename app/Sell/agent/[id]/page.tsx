@@ -14,76 +14,75 @@ import {
 const agents = [
   {
     id: 1,
-    name: "Polly Grueso",
+    name: "Sokunthy Chea",
     imageUrl:
       "https://imgcdn.stablediffusionweb.com/2024/11/6/8708a5a1-2092-49ef-bb2b-d8c9567f3595.jpg",
-    phone: "281-235-5925",
-    email: "polly.agent@example.com",
-    agency: "Anchored Real Estate Group",
+    phone: "085-234-1592",
+    email: "sokunthy.chea@example.com",
+    agency: "Mekong Property Group",
     about:
-      "Over 15 years helping clients sell homes for top value. Polly is a certified negotiation expert, consistently achieving above-market sales for her clients. She specializes in staging and marketing strategies that maximize property exposure and has a reputation for transparent communication throughout the selling process.",
+      "With over 15 years of experience, Sokunthy helps clients get top value for their homes. Specializes in marketing and negotiation, delivering above-market results with honesty and transparency.",
   },
   {
     id: 2,
-    name: "Jennifer lorez",
+    name: "Chanra Phan",
     imageUrl:
       "https://imgcdn.stablediffusionweb.com/2024/10/22/b749b5f3-f64e-4dde-9182-2254b29486c1.jpg",
-    phone: "310-478-4567",
-    email: "james.lee@example.com",
-    agency: "Urban Realty",
+    phone: "096-478-4567",
+    email: "chanra.phan@example.com",
+    agency: "Urban Realty Cambodia",
     about:
-      "Specialist in city properties with a strong negotiation record. James has closed over 200 urban property deals, leveraging deep market knowledge and digital marketing expertise. He is known for his responsiveness and ability to guide first-time sellers through every step.",
+      "Expert in Phnom Penh city properties with deep market insights. Chanra is trusted for guiding first-time sellers and investors through every step of the process.",
   },
   {
     id: 3,
-    name: "Sofia Rivas",
+    name: "Sreypov Kong",
     imageUrl:
-      "https://i.pinimg.com/originals/cd/07/8c/cd078cd628bf15fa05303482a5eb6d31.png",
-    phone: "646-555-2100",
-    email: "sofia.rivas@example.com",
-    agency: "Skyline Brokers",
+      "https://t3.ftcdn.net/jpg/05/17/54/28/360_F_517542860_S6JeujV9a7G8bhje5qIyfYNCNBvowUeS.jpg",
+    phone: "089-555-2100",
+    email: "sreypov.kong@example.com",
+    agency: "Skyline Brokers Cambodia",
     about:
-      "Award-winning sales agent with attention to client needs. Sofia has received multiple industry awards for customer satisfaction and sales volume. She provides personalized selling plans, multilingual support, and is highly rated for her follow-through and dedication.",
+      "Award-winning sales agent known for personalized service. Sreypov is multilingual and ensures excellent communication and follow-through for all clients.",
   },
   {
     id: 4,
-    name: "Amenda Chan",
+    name: "Rithy Keo",
     imageUrl:
-      "https://img.freepik.com/premium-photo/professional-headshot-indian-woman-business-suit_943281-26035.jpg",
-    phone: "702-444-1234",
-    email: "david.chan@example.com",
-    agency: "Golden Homes",
+      "https://media.istockphoto.com/id/1318327528/photo/charming-asian-businesswoman-working-with-a-laptop-at-the-office-looking-at-camera.jpg?s=612x612&w=0&k=20&c=t-DTh02iSEXHea_5ZV0hnuw-8KCMz3Z9Ki4slzQkulk=",
+    phone: "092-444-1234",
+    email: "rithy.keo@example.com",
+    agency: "Golden Homes Cambodia",
     about:
-      "Expert in luxury and investment properties. David brings over a decade of experience in high-end real estate, offering tailored marketing for luxury listings and in-depth investment analysis. He is trusted by repeat clients for his discretion and market insight.",
+      "Specialist in luxury and investment real estate. Rithy has built a solid reputation for delivering market insights and professional guidance on high-value properties.",
   },
   {
     id: 5,
-    name: "Linda Smith",
+    name: "Sokha Chhim",
     imageUrl:
       "https://media.licdn.com/dms/image/v2/C4E12AQFT7GlBaqw0kg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520242448808?e=2147483647&v=beta&t=dbUghHgF29FEQi7lQSk4WbgGB-GBhrxgbINhnMfwgxY",
-    phone: "213-555-7890",
-    email: "linda.smith@example.com",
-    agency: "HomeFinders Realty",
+    phone: "081-555-7890",
+    email: "sokha.chhim@example.com",
+    agency: "HomeFinders Cambodia",
     about:
-      "Known for dedicated service and quick sales. Linda has a proven track record of selling homes faster than the market average. She excels at pricing strategies, open house events, and provides sellers with regular updates and honest feedback.",
+      "Sokha is known for quick home sales and professional service. Clients praise her dedication, pricing strategy, and market knowledge.",
   },
   {
     id: 6,
-    name: "Laura Jane",
+    name: "Pov Sreypich",
     imageUrl:
       "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://media.easy-peasy.ai/17b1593d-fecb-4684-bd4f-09f4fe3949b9/faa90aa0-3dfa-4756-844e-e9a4eb037880.png",
-    phone: "112-555-7790",
-    email: "laura.jane@example.com",
-    agency: "HomeFinders Realty",
+    phone: "087-555-7790",
+    email: "dara.meas@example.com",
+    agency: "NextStep Realty",
     about:
-      "Known for dedicated service and quick sales. Laura is praised for her attention to detail, proactive communication, and ability to coordinate seamless transactions. She offers complimentary home evaluations and custom marketing plans for each client.",
+      "Known for transparent communication and effective coordination. Dara offers free home evaluations and customized marketing plans.",
   },
 ];
 
 const propertyTypes = [
   { key: "House", label: "House" },
   { key: "Condo", label: "Condo" },
-  { key: "Land", label: "Land" },
   { key: "Townhouse", label: "Townhouse" },
   { key: "Apartment", label: "Apartment" },
   { key: "Other", label: "Other" },

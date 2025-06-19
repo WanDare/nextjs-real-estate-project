@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer";
-
+import Footer from "@/components/Footer"
+import { Navbar } from "@/components/navbar";
 
 export default function AboutLayout({
   children,
@@ -7,11 +7,11 @@ export default function AboutLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section >
-      <div >
+    <section>
+      <div>
+        <Navbar />
         {children}
         <Footer />
-
       </div>
     </section>
   );

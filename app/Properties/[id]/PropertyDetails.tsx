@@ -8,6 +8,12 @@ import {
   ChevronDown,
   MessageSquare,
   Phone,
+  Bath,
+  Flame,
+  Snowflake,
+  Utensils,
+  Home,
+  DollarSign,
 } from "lucide-react";
 import SaveShare from "@/components/SaveShare";
 import { useState } from "react";
@@ -155,18 +161,18 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                   ? property.description
                   : property.description.slice(0, 250) + "..."}
               </p>
-              <button
-                onClick={toggleShowMore}
-                className="flex items-center text-blue-600 underline mt-3 font-medium"
-              >
-                {showMore ? "Show Less" : "Show More"}
+              {/* <button onClick={toggleShowMore} className="flex items-center">
+                {showMore ? "Show Less" : "Property Description"}
                 <ChevronDown
                   className={`ml-1 transition-transform ${
                     showMore ? "rotate-180" : "rotate-0"
                   }`}
                   size={16}
                 />
-              </button>
+              </button> */}
+              <div className="flex gap-2 py-3 text-blue-600  mt-3 font-medium">
+                <h1>Property Description</h1>
+              </div>
               <div className="flex gap-2 py-3 text-gray-400">
                 | <p>Now on MHK-RealEstate</p> | <p>200 views</p> |{" "}
                 <p>19 saves</p> |
@@ -189,52 +195,63 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
           >
             {/* Left Column */}
             <div className="w-full md:w-1/2 pr-0 md:pr-4">
-              <h1 className="text-xl font-bold mb-2 text-gray-900">
+              <h1 className="text-xl font-bold mb-4 text-gray-900">
                 Facts & features
               </h1>
-              <h1 className="font-semibold text-gray-700 mb-2">Interior</h1>
-              <h3 className="font-semibold text-base">Bedrooms & bathrooms</h3>
-              <ul className="list-disc list-inside text-gray-700 mb-3">
-                <li>Bedrooms: {property.bedrooms}</li>
-                <li>Bathrooms: {property.bathrooms}</li>
-              </ul>
-              <h3 className="font-semibold text-base mt-2">Rooms</h3>
-              <ul className="list-disc list-inside text-gray-700 mb-3">
-                <li className="gap-2 p-2">Room types: {property.rooms}</li>
-              </ul>
-              <h3 className="font-semibold text-base mt-2">Heating</h3>
-              <ul className="list-disc list-inside text-gray-700 mb-3">
-                <li>{property.heatingFuel}</li>
-              </ul>
-              <h3 className="font-semibold text-base mt-2">Cooling</h3>
-              <ul className="list-disc list-inside text-gray-700">
-                <li>{property.coolingType}</li>
+
+              <h2 className="font-semibold text-gray-700 mb-2">Interior</h2>
+
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-center gap-2">
+                  <BedDouble className="w-5 h-5 text-blue-600" />
+                  Bedrooms: {property.bedrooms}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Bath className="w-5 h-5 text-blue-600" />
+                  Bathrooms: {property.bathrooms}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Home className="w-5 h-5 text-blue-600" />
+                  Room types: {property.rooms}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Flame className="w-5 h-5 text-blue-600" />
+                  Heating: {property.heatingFuel}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Snowflake className="w-5 h-5 text-blue-600" />
+                  Cooling: {property.coolingType}
+                </li>
               </ul>
             </div>
+
             {/* Right Column */}
             <div className="w-full md:w-1/2 pl-0 md:pl-4">
-              <h3 className="font-semibold text-base">Appliances</h3>
-              <ul className="list-disc list-inside text-gray-700 mb-3">
-                <li>{property.rooms}</li>
-              </ul>
-              <h3 className="font-semibold text-base mt-2">Features</h3>
-              <ul className="list-disc list-inside text-gray-700 mb-3">
-                <li>{property.indoorFeatures}</li>
-              </ul>
-              <h3 className="font-semibold text-base mt-2">Interior area</h3>
-              <ul className="list-disc list-inside text-gray-700 mb-3">
-                <li>Total structure area: 2,156</li>
-                <li>Total interior livable area: 2,156 m²</li>
-              </ul>
-              <h3 className="font-semibold text-base mt-2">
-                Financial & listing details
-              </h3>
-              <ul className="list-disc list-inside text-gray-700">
-                <li>Total structure area: 2,156</li>
-                <li>Total interior livable area: 2,156 m²</li>
+              <ul className="space-y-2 text-gray-700 mt-9 md:mt-11">
+                <li className="flex items-center gap-2">
+                  <Utensils className="w-5 h-5 text-blue-600" />
+                  Appliances: {property.rooms}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Home className="w-5 h-5 text-blue-600" />
+                  Features: {property.indoorFeatures}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Ruler className="w-5 h-5 text-blue-600" />
+                  Total structure area: 2,156 m²
+                </li>
+                <li className="flex items-center gap-2">
+                  <Ruler className="w-5 h-5 text-blue-600" />
+                  Livable area: 2,156 m²
+                </li>
+                <li className="flex items-center gap-2">
+                  <DollarSign className="w-5 h-5 text-blue-600" />
+                  HOA dues: ${property.HOADues}/mo
+                </li>
               </ul>
             </div>
           </section>
+
           {/* Additional Features */}
           <section className="flex flex-col md:flex-row p-8 rounded-2xl border border-gray-100 shadow-md mb-6 gap-6 bg-white">
             {/* Left Column */}
@@ -275,28 +292,6 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
             id="Market value"
             className="bg-white p-8 rounded-2xl border border-gray-100 mb-10 shadow-md"
           >
-            <h2 className="text-2xl font-extrabold text-blue-700 mb-4">
-              Estimated market value
-            </h2>
-            {/* Three-Column Overview */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-              <div className="p-4 border rounded-lg text-center bg-gray-50">
-                <p className="font-semibold">
-                  Zestimate<sup>®</sup>
-                </p>
-                <p className="text-gray-500">Not available</p>
-              </div>
-              <div className="p-4 border rounded-lg text-center bg-gray-50">
-                <p className="font-semibold">Estimated sales range</p>
-                <p className="text-gray-500">Not available</p>
-              </div>
-              <div className="p-4 border rounded-lg text-center bg-gray-50">
-                <p className="font-semibold">
-                  Rent Zestimate<sup>®</sup>
-                </p>
-                <p className="text-gray-500">Not available</p>
-              </div>
-            </div>
             {/* Price History */}
             <h3 className="text-xl font-bold mb-2">Price history</h3>
             <table className="w-full text-left border-collapse mb-3">

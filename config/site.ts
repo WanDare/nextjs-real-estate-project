@@ -21,6 +21,10 @@ export const siteConfig = {
       href: "/Rent",
     },
     {
+      label: "About",
+      href: "/About",
+    },
+    {
       label: "Admin Dashboard",
       href: "/admin",
       auth: true,

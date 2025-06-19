@@ -1,5 +1,16 @@
 "use client";
-import { Hammer, Ruler, House, BedDouble, ChevronDown } from "lucide-react";
+import {
+  Hammer,
+  Ruler,
+  House,
+  BedDouble,
+  Bath,
+  Flame,
+  Snowflake,
+  Utensils,
+  Home,
+  DollarSign,
+} from "lucide-react";
 import SaveShare from "@/components/SaveShare";
 import { useState } from "react";
 import Image from "next/image";
@@ -184,21 +195,23 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
               <p>
                 {showMore
                   ? property.description
-                  : property.description.slice(0, 200) + "..."}
+                  : property.description.slice(0, 200) + ""}
               </p>
-              <button
+              {/* <button
                 onClick={toggleShowMore}
                 className="flex items-center text-blue-500 underline mt-2 transition-transform"
               >
-                {showMore ? "Show Less" : "Show More"}
+                {showMore ? "Show Less" : "Property Description"}
                 <ChevronDown
                   className={`ml-1 transition-transform ${
                     showMore ? "rotate-180" : "rotate-0"
                   }`}
                   size={16}
                 />
-              </button>
-
+              </button> */}
+              <div className="flex gap-2 py-3 text-blue-600  mt-3 font-medium">
+                <h1>Property Description</h1>
+              </div>
               <div className="flex gap-2 py-2 text-xs text-gray-500">
                 |<p>Now on MHK-RealEstate</p>|<p>200 views</p>|<p>19 saves</p>
               </div>
@@ -217,59 +230,63 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
           {/* Facts & features */}
           <section
             id="Facts & features"
-            className="flex p-6 rounded-xl border-2 shadow-md mb-4 items-start justify-between bg-white"
+            className="flex flex-col md:flex-row p-8 rounded-2xl border border-gray-100 shadow-md mb-6 gap-6 bg-white"
           >
             {/* Left Column */}
-            <div className="w-1/2 pr-4">
-              <h1 className="text-xl font-bold mb-2">Facts & Features</h1>
-              <h3 className="font-semibold text-lg">Bedrooms & Bathrooms</h3>
-              <ul className="list-disc list-inside">
-                <li>Bedrooms: {property.bedrooms}</li>
-                <li>Bathrooms: {property.bathrooms}</li>
-              </ul>
+            <div className="w-full md:w-1/2 pr-0 md:pr-4">
+              <h1 className="text-xl font-bold mb-4 text-gray-900">
+                Facts & features
+              </h1>
 
-              <h3 className="font-semibold text-lg mt-4">Rooms</h3>
-              <ul className="list-disc list-inside">
-                <li className="gap-2 p-2">Room types: {property.rooms}</li>
-              </ul>
+              <h2 className="font-semibold text-gray-700 mb-2">Interior</h2>
 
-              <h3 className="font-semibold text-lg mt-4">Heating</h3>
-              <ul className="list-disc list-inside">
-                <li>{property.heatingFuel}</li>
-              </ul>
-
-              <h3 className="font-semibold text-lg mt-4">Cooling</h3>
-              <ul className="list-disc list-inside">
-                <li>{property.coolingType}</li>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-center gap-2">
+                  <BedDouble className="w-5 h-5 text-blue-600" />
+                  Bedrooms: {property.bedrooms}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Bath className="w-5 h-5 text-blue-600" />
+                  Bathrooms: {property.bathrooms}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Home className="w-5 h-5 text-blue-600" />
+                  Room types: {property.rooms}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Flame className="w-5 h-5 text-blue-600" />
+                  Heating: {property.heatingFuel}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Snowflake className="w-5 h-5 text-blue-600" />
+                  Cooling: {property.coolingType}
+                </li>
               </ul>
             </div>
 
             {/* Right Column */}
-            <div className="w-1/2 pl-4">
-              <h3 className="font-semibold text-lg">Appliances</h3>
-              <ul className="list-disc list-inside">
-                <li>{property.rooms}</li>
-              </ul>
-
-              <h3 className="font-semibold text-lg mt-4">Features</h3>
-              <ul className="list-disc list-inside">
-                <li>{property.indoorFeatures}</li>
-              </ul>
-
-              <h3 className="font-semibold text-lg mt-4">Interior Area</h3>
-              <ul className="list-disc list-inside">
-                <li>
-                  Total structure area: {property.sqft.toLocaleString()} sqft
+            <div className="w-full md:w-1/2 pl-0 md:pl-4">
+              <ul className="space-y-2 text-gray-700 mt-9 md:mt-11">
+                <li className="flex items-center gap-2">
+                  <Utensils className="w-5 h-5 text-blue-600" />
+                  Appliances: {property.rooms}
                 </li>
-                <li>
-                  Total interior livable area: {property.sqft.toLocaleString()}{" "}
-                  sqft
+                <li className="flex items-center gap-2">
+                  <Home className="w-5 h-5 text-blue-600" />
+                  Features: {property.indoorFeatures}
                 </li>
-              </ul>
-              <h3 className="font-semibold text-lg mt-4">Rental Details</h3>
-              <ul className="list-disc list-inside">
-                <li>Lease Term: {leaseTerm}</li>
-                <li>Deposit: USD {deposit.toLocaleString()}</li>
+                <li className="flex items-center gap-2">
+                  <Ruler className="w-5 h-5 text-blue-600" />
+                  Total structure area: 2,156 m²
+                </li>
+                <li className="flex items-center gap-2">
+                  <Ruler className="w-5 h-5 text-blue-600" />
+                  Livable area: 2,156 m²
+                </li>
+                <li className="flex items-center gap-2">
+                  <DollarSign className="w-5 h-5 text-blue-600" />
+                  HOA dues: ${property.HOADues}/mo
+                </li>
               </ul>
             </div>
           </section>
@@ -279,31 +296,6 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
             id="Rental Market"
             className="p-4 rounded-xl border-2 mb-4 shadow-md bg-white"
           >
-            <h2 className="text-2xl font-bold text-blue-700 mb-4">
-              Estimated Rental Market Value
-            </h2>
-
-            {/* Three-Column Overview */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-              {/* Rent Estimate */}
-              <div className="p-4 border rounded-md text-center">
-                <p className="font-semibold">Market rent</p>
-                <p className="text-gray-500">
-                  USD {property.price.toLocaleString()}/mo
-                </p>
-              </div>
-              {/* Estimated Range */}
-              <div className="p-4 border rounded-md text-center">
-                <p className="font-semibold">Estimated rent range</p>
-                <p className="text-gray-500">Not available</p>
-              </div>
-              {/* Availability */}
-              <div className="p-4 border rounded-md text-center">
-                <p className="font-semibold">Available from</p>
-                <p className="text-gray-500">{availableDate}</p>
-              </div>
-            </div>
-
             {/* Price History */}
             <h3 className="text-xl font-bold mb-2">Rental History</h3>
             <table className="w-full text-left border-collapse">
