@@ -87,14 +87,14 @@ export default function AboutPage() {
 
       {/* Meet the Team */}
       <section className="py-20 px-6 bg-gray-50">
-        <div className=" mx-auto flex flex-col lg:flex-row items-start gap-10">
+        <div className="mx-auto max-w-7xl flex flex-col lg:flex-row items-start gap-10">
           {/* Left Side: Section Title and Description */}
           <div className="lg:w-1/2">
             <p className="text-sm text-blue-600 font-medium mb-2">Our Team</p>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Leadership
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 mb-2">
               Our leadership blends technical excellence, creative thinking, and
               strategic execution to elevate Cambodia’s property experience.
             </p>
@@ -105,31 +105,31 @@ export default function AboutPage() {
           </div>
 
           {/* Right Side: Team Cards */}
-          <div className="lg:w-1/2 overflow-x-auto">
-            <div className="flex gap-6 min-w-[900px]">
+          <div className="lg:w-1/2 w-full">
+            <div className="flex gap-4 overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 md:gap-6">
               {[
                 {
-                  name: "Neak Vanneath",
-                  title: "Developer & Designer",
+                  name: "Sokunthy Chea",
+                  title: "Project Manager",
                   img: "https://randomuser.me/api/portraits/women/65.jpg",
-                  desc: "Specializes in UI systems, clean component architecture, and intuitive design experiences tailored for the Cambodian market.",
+                  desc: "Since 2020",
                 },
                 {
-                  name: "Dara Meas",
-                  title: "Product Manager",
+                  name: "Meas Van",
+                  title: "Sales Manager",
                   img: "https://randomuser.me/api/portraits/men/85.jpg",
-                  desc: "Drives roadmap strategy with agile execution and a focus on aligning features with market demand and user insights.",
+                  desc: "Since 2021",
                 },
                 {
                   name: "Sreypov Kong",
                   title: "Marketing Lead",
                   img: "https://randomuser.me/api/portraits/women/70.jpg",
-                  desc: "Leads digital marketing initiatives, brand strategy, and customer outreach across channels to grow platform reach.",
+                  desc: "Since 2020",
                 },
               ].map((member, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 w-[260px] bg-white p-5 rounded-xl text-center"
+                  className="flex-shrink-0 w-[260px] md:w-full bg-white p-5 rounded-xl text-center shadow-sm"
                 >
                   <div className="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow">
                     <Image
@@ -143,7 +143,7 @@ export default function AboutPage() {
                   <h4 className="text-lg font-semibold text-gray-900">
                     {member.name}
                   </h4>
-                  <p className="text-sm text-gray-500 mb-2">{member.title}</p>
+                  <p className="text-sm text-gray-500 mb-1">{member.title}</p>
                   <p className="text-sm text-gray-600">{member.desc}</p>
                 </div>
               ))}
