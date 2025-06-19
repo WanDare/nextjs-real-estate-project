@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Card, CardBody, CardFooter, Button, Image } from "@nextui-org/react";
 
 const agents = [
@@ -69,16 +70,33 @@ const agents = [
     about:
       "Known for transparent communication and effective coordination. Dara offers free home evaluations and customized marketing plans.",
   },
+  {
+    id: 7,
+    name: "Sokunthy Chea",
+    imageUrl:
+      "https://imgcdn.stablediffusionweb.com/2024/11/6/8708a5a1-2092-49ef-bb2b-d8c9567f3595.jpg",
+    phone: "085-234-1592",
+    email: "sokunthy.chea@example.com",
+    agency: "Mekong Property Group",
+    about:
+      "With over 15 years of experience, Sokunthy helps clients get top value for their homes. Specializes in marketing and negotiation, delivering above-market results with honesty and transparency.",
+  },
 ];
 
 export default function SellPage() {
   const router = useRouter();
+  const [visibleCount, setVisibleCount] = useState(6);
+
+  const handleShowMore = () => {
+    setVisibleCount((prev) => Math.min(prev + 6, agents.length));
+  };
 
   return (
     <main className="min-h-[80vh] flex flex-col items-center p-6">
       <h1 className="text-2xl font-bold mb-6">Choose an Agent to Sell With</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
-        {agents.map((agent) => (
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+        {agents.slice(0, visibleCount).map((agent) => (
           <Card
             key={agent.id}
             isPressable
@@ -94,11 +112,10 @@ export default function SellPage() {
                 alt={agent.name}
                 className="mb-2 rounded-full object-cover object-center w-[86px] h-[86px]"
               />
-
               <h3 className="text-lg font-bold">{agent.name}</h3>
               <p className="text-xs text-gray-500">{agent.agency}</p>
               <p className="text-xs">{agent.phone}</p>
-              <p className="text-xs italic mt-1 line-clamp-3 text-center">
+              <p className="text-xs mt-1 line-clamp-3 text-center">
                 {agent.about}
               </p>
             </CardBody>
@@ -118,6 +135,15 @@ export default function SellPage() {
           </Card>
         ))}
       </div>
+
+      {visibleCount < agents.length && (
+        <button
+          onClick={handleShowMore}
+          className="mt-8 text-blue-600 font-medium hover:underline transition"
+        >
+          See More Agents
+        </button>
+      )}
     </main>
   );
 }

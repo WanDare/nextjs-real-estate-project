@@ -12,6 +12,8 @@ import {
   Flame,
   Snowflake,
   Utensils,
+  Car,
+  Building2,
   Home,
   DollarSign,
 } from "lucide-react";
@@ -156,11 +158,11 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
             </div>
             {/* Property Description Section */}
             <section className="border-t border-b border-gray-100 py-6">
-              <p className="text-gray-700 leading-relaxed">
+              {/* <p className="text-gray-700 leading-relaxed">
                 {showMore
                   ? property.description
                   : property.description.slice(0, 250) + "..."}
-              </p>
+              </p> */}
               {/* <button onClick={toggleShowMore} className="flex items-center">
                 {showMore ? "Show Less" : "Property Description"}
                 <ChevronDown
@@ -170,22 +172,38 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                   size={16}
                 />
               </button> */}
-              <div className="flex gap-2 py-3 text-blue-600  mt-3 font-medium">
+              <div className="flex gap-2 py-3 text-blue-600 mt-3 font-medium">
                 <h1>Property Description</h1>
               </div>
-              <div className="flex gap-2 py-3 text-gray-400">
+
+              {/* <div className="flex gap-2 py-3 text-gray-400">
                 | <p>Now on MHK-RealEstate</p> | <p>200 views</p> |{" "}
                 <p>19 saves</p> |
-              </div>
-              <ol className="py-2 text-sm text-gray-400">
+              </div> */}
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {property.description}
+              </p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Nestled in the heart of Phnom Penh, this modern 3-bedroom villa
+                blends elegant design with functional living. The spacious
+                layout includes a sunlit open-concept living and dining area, a
+                fully equipped gourmet kitchen, and a private balcony with
+                stunning city views. The master suite boasts a walk-in closet
+                and a luxurious ensuite bath. Enjoy access to a secure gated
+                community, landscaped gardens, and private parking. Ideal for
+                families or professionals seeking comfort, security, and urban
+                convenience.
+              </p>
+
+              {/* <ol className="py-4 text-sm text-gray-400 list-disc list-inside">
                 <li>MHK last checked: 13 hours ago</li>
-                <li>Listing updated: January 25, 2025 at 08:00pm </li>
+                <li>Listing updated: January 25, 2025 at 08:00pm</li>
                 <li>
-                  Listed by: Polly Grueso TREC #0742460 281-235-5925, Anchored
+                  Listed by: Polly Grueso TREC #0742460, 281-235-5925, Anchored
                   Real Estate Group
                 </li>
-                <li className="py-2">Source: HAR,MLS#: 89058153</li>
-              </ol>
+                <li>Source: HAR, MLS#: 89058153</li>
+              </ol> */}
             </section>
           </section>
           {/* Facts & features */}
@@ -214,14 +232,6 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                   <Home className="w-5 h-5 text-blue-600" />
                   Room types: {property.rooms}
                 </li>
-                <li className="flex items-center gap-2">
-                  <Flame className="w-5 h-5 text-blue-600" />
-                  Heating: {property.heatingFuel}
-                </li>
-                <li className="flex items-center gap-2">
-                  <Snowflake className="w-5 h-5 text-blue-600" />
-                  Cooling: {property.coolingType}
-                </li>
               </ul>
             </div>
 
@@ -244,10 +254,6 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                   <Ruler className="w-5 h-5 text-blue-600" />
                   Livable area: 2,156 m²
                 </li>
-                <li className="flex items-center gap-2">
-                  <DollarSign className="w-5 h-5 text-blue-600" />
-                  HOA dues: ${property.HOADues}/mo
-                </li>
               </ul>
             </div>
           </section>
@@ -257,21 +263,30 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
             {/* Left Column */}
             <div className="w-full md:w-1/2 pr-0 md:pr-4">
               <h1 className="text-xl font-bold mb-2 text-gray-900">Property</h1>
-              <h3 className="font-semibold text-base">Parking</h3>
-              <ul className="list-disc list-inside text-gray-700 mb-3">
-                <li>{property.parking}</li>
-              </ul>
-              <h3 className="font-semibold text-base mt-2">Features</h3>
-              <ul className="list-disc list-inside text-gray-700">
-                <li>Room types: 1 Living Area, Den, Formal Dining</li>
-              </ul>
+              <section className="py-4 bg-white">
+                <div className="max-w-2xl mx-auto flex flex-col items-start gap-6">
+                  {/* Parking Info */}
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <span className="bg-blue-100 p-2 rounded-full">
+                      <Car className="w-5 h-5 text-blue-600" />
+                    </span>
+                    <p className="text-base font-medium">Parking Available</p>
+                  </div>
+
+                  {/* Commercial Area Info */}
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <span className="bg-yellow-100 p-2 rounded-full">
+                      <Building2 className="w-5 h-5 text-yellow-600" />
+                    </span>
+                    <p className="text-base font-medium">
+                      Located in a Commercial Area
+                    </p>
+                  </div>
+                </div>
+              </section>
             </div>
             {/* Right Column */}
             <div className="w-full md:w-1/2 pl-0 md:pl-4">
-              <h3 className="font-semibold text-base">Lot</h3>
-              <ul className="list-disc list-inside text-gray-700 mb-3">
-                <li>Lot-Size: {property.LotSize}</li>
-              </ul>
               <h3 className="font-semibold text-base mt-2">Features</h3>
               <ul className="list-disc list-inside text-gray-700 mb-3">
                 <li>Crown Molding, All Bedrooms Up, Countertops (Granite)</li>

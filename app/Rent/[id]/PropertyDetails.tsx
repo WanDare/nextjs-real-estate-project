@@ -192,15 +192,13 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                 )}
               </div>
 
-              <p>
+              <section className="border-t border-b border-gray-100 py-6">
+                {/* <p className="text-gray-700 leading-relaxed">
                 {showMore
                   ? property.description
-                  : property.description.slice(0, 200) + ""}
-              </p>
-              {/* <button
-                onClick={toggleShowMore}
-                className="flex items-center text-blue-500 underline mt-2 transition-transform"
-              >
+                  : property.description.slice(0, 250) + "..."}
+              </p> */}
+                {/* <button onClick={toggleShowMore} className="flex items-center">
                 {showMore ? "Show Less" : "Property Description"}
                 <ChevronDown
                   className={`ml-1 transition-transform ${
@@ -209,21 +207,39 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                   size={16}
                 />
               </button> */}
-              <div className="flex gap-2 py-3 text-blue-600  mt-3 font-medium">
-                <h1>Property Description</h1>
-              </div>
-              <div className="flex gap-2 py-2 text-xs text-gray-500">
-                |<p>Now on MHK-RealEstate</p>|<p>200 views</p>|<p>19 saves</p>
-              </div>
-              <ol className="py-2 text-xs text-gray-500">
+                <div className="flex gap-2 py-3 text-blue-600 mt-3 font-medium">
+                  <h1>Property Description</h1>
+                </div>
+
+                {/* <div className="flex gap-2 py-3 text-gray-400">
+                | <p>Now on MHK-RealEstate</p> | <p>200 views</p> |{" "}
+                <p>19 saves</p> |
+              </div> */}
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {property.description}
+                </p>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Nestled in the heart of Phnom Penh, this modern 3-bedroom
+                  villa blends elegant design with functional living. The
+                  spacious layout includes a sunlit open-concept living and
+                  dining area, a fully equipped gourmet kitchen, and a private
+                  balcony with stunning city views. The master suite boasts a
+                  walk-in closet and a luxurious ensuite bath. Enjoy access to a
+                  secure gated community, landscaped gardens, and private
+                  parking. Ideal for families or professionals seeking comfort,
+                  security, and urban convenience.
+                </p>
+
+                {/* <ol className="py-4 text-sm text-gray-400 list-disc list-inside">
                 <li>MHK last checked: 13 hours ago</li>
                 <li>Listing updated: January 25, 2025 at 08:00pm</li>
                 <li>
-                  Listed by: Polly Grueso TREC #0742460 281-235-5925, Anchored
+                  Listed by: Polly Grueso TREC #0742460, 281-235-5925, Anchored
                   Real Estate Group
                 </li>
-                <li className="py-2">Source: HAR, MLS#: 89058153</li>
-              </ol>
+                <li>Source: HAR, MLS#: 89058153</li>
+              </ol> */}
+              </section>
             </section>
           </section>
 
@@ -253,14 +269,6 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                   <Home className="w-5 h-5 text-blue-600" />
                   Room types: {property.rooms}
                 </li>
-                <li className="flex items-center gap-2">
-                  <Flame className="w-5 h-5 text-blue-600" />
-                  Heating: {property.heatingFuel}
-                </li>
-                <li className="flex items-center gap-2">
-                  <Snowflake className="w-5 h-5 text-blue-600" />
-                  Cooling: {property.coolingType}
-                </li>
               </ul>
             </div>
 
@@ -282,10 +290,6 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                 <li className="flex items-center gap-2">
                   <Ruler className="w-5 h-5 text-blue-600" />
                   Livable area: 2,156 m²
-                </li>
-                <li className="flex items-center gap-2">
-                  <DollarSign className="w-5 h-5 text-blue-600" />
-                  HOA dues: ${property.HOADues}/mo
                 </li>
               </ul>
             </div>

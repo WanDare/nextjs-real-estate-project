@@ -5,90 +5,80 @@ import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <main className="bg-gray-50 text-gray-800">
+    <main className="bg-white text-gray-800 font-sans">
       {/* Hero Section */}
-      <section className="relative bg-blue-600 text-white py-20 px-6 text-center transition-all duration-500">
-        <h1 className="text-4xl font-bold mb-4 animate-fade-in">
-          About Our Company
-        </h1>
-        <p className="max-w-2xl mx-auto text-lg animate-fade-in delay-200">
-          We are committed to transforming real estate experiences in Cambodia
-          by connecting people with properties they love.
+      <section className="relative bg-gradient-to-r from-blue-700 to-blue-500 text-white py-24 px-6 text-center">
+        <h1 className="text-5xl font-extrabold mb-4">About Our Company</h1>
+        <p className="max-w-2xl mx-auto text-xl opacity-90">
+          Transforming real estate in Cambodia by connecting people with
+          properties they love.
         </p>
       </section>
 
       {/* Company Info */}
-      <section className="py-20 px-6 max-w-5xl mx-auto transition-opacity duration-700 animate-fade-in">
+      <section className="py-20 px-6 max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative overflow-hidden rounded-lg shadow-xl">
+          <div className="overflow-hidden rounded-xl shadow-lg">
             <Image
-              src="https://images.pexels.com/photos/6248976/pexels-photo-6248976.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              src="https://images.pexels.com/photos/6248976/pexels-photo-6248976.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=700"
               alt="Office"
-              width={600}
-              height={400}
+              width={700}
+              height={450}
               unoptimized
               className="object-cover w-full h-full"
             />
           </div>
           <div>
             <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
-            <p className="mb-4 text-lg leading-relaxed">
-              Founded in 2024, our mission is to make property buying, selling,
-              and renting easier and more accessible across Phnom Penh and
-              beyond. We combine expert local knowledge with cutting-edge
-              digital tools to bring you the best listings in the market.
+            <p className="mb-4 text-lg leading-relaxed text-gray-700">
+              Founded in 2024, our mission is to simplify and elevate the
+              process of buying, selling, and renting properties throughout
+              Phnom Penh and beyond.
             </p>
-            <p className="text-lg leading-relaxed">
-              Whether you're searching for your dream home or selling an
-              investment property, our dedicated agents are here to guide you
-              every step of the way with professionalism and care.
+            <p className="text-lg leading-relaxed text-gray-700">
+              With expert local knowledge and advanced technology, our agents
+              provide tailored solutions and exceptional service at every step.
             </p>
           </div>
         </div>
       </section>
 
       {/* Mission and Vision */}
-      <section className="bg-white py-20 px-6 transition-transform duration-700 animate-slide-up">
+      <section className="bg-gray-50 py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Our Mission & Vision</h2>
-          <p className="mb-4 text-lg">
-            Our mission is to empower buyers and sellers with the tools,
-            knowledge, and service they need to make smart property decisions.
-            We envision a future where finding a home in Cambodia is simple,
-            transparent, and efficient.
+          <h2 className="text-3xl font-bold mb-6">Our Mission & Vision</h2>
+          <p className="mb-4 text-lg text-gray-700">
+            To empower clients with modern tools, data-driven insights, and
+            professional guidance to make confident real estate decisions.
           </p>
-          <p className="text-lg">
-            We are not just agents—we are your advisors, your partners, and your
-            biggest supporters in achieving your real estate goals.
+          <p className="text-lg text-gray-700">
+            We envision a real estate market where every transaction is simple,
+            transparent, and rewarding.
           </p>
         </div>
       </section>
 
       {/* Core Values */}
-      <section className="bg-gray-100 py-20 px-6">
+      <section className="bg-white py-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-10">Our Core Values</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Integrity",
-                desc: "We prioritize honesty, transparency, and ethics in every interaction.",
-              },
-              {
-                title: "Innovation",
-                desc: "We embrace technology to deliver better, faster service.",
-              },
-              {
-                title: "Client Success",
-                desc: "Your goals are our goals. We go above and beyond to help you succeed.",
-              },
-            ].map((value, i) => (
+            {["Integrity", "Innovation", "Client Success"].map((title, i) => (
               <div
                 key={i}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                className="bg-blue-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
               >
-                <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                <p className="text-gray-600">{value.desc}</p>
+                <h3 className="text-xl font-semibold mb-2 text-blue-700">
+                  {title}
+                </h3>
+                <p className="text-gray-600">
+                  {title === "Integrity" &&
+                    "We act with honesty, transparency, and professionalism in every interaction."}
+                  {title === "Innovation" &&
+                    "We utilize technology to enhance service delivery and improve user experience."}
+                  {title === "Client Success" &&
+                    "We measure our success by the satisfaction and success of our clients."}
+                </p>
               </div>
             ))}
           </div>
@@ -96,46 +86,82 @@ export default function AboutPage() {
       </section>
 
       {/* Meet the Team */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Meet Our Team</h2>
-          <div className="flex justify-center items-center min-h-[300px]">
-            {[
-              {
-                name: "Neak Vanneath",
-                title: "Developer and Designer",
-                img: "https://randomuser.me/api/portraits/women/65.jpg",
-              },
-            ].map((member, i) => (
-              <div
-                key={i}
-                className="p-6 rounded-lg shadow-md bg-gray-50 hover:shadow-xl transition duration-300 flex flex-col items-center justify-center text-center"
-              >
-                <Image
-                  src={member.img}
-                  alt={member.name}
-                  width={120}
-                  height={120}
-                  className="rounded-full object-cover mx-auto mb-4"
-                />
-                <h4 className="font-semibold text-lg">{member.name}</h4>
-                <p className="text-sm text-gray-500">{member.title}</p>
-              </div>
-            ))}
+      <section className="py-20 px-6 bg-gray-50">
+        <div className=" mx-auto flex flex-col lg:flex-row items-start gap-10">
+          {/* Left Side: Section Title and Description */}
+          <div className="lg:w-1/2">
+            <p className="text-sm text-blue-600 font-medium mb-2">Our Team</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Leadership
+            </h2>
+            <p className="text-gray-600">
+              Our leadership blends technical excellence, creative thinking, and
+              strategic execution to elevate Cambodia’s property experience.
+            </p>
+            <p className="text-gray-600">
+              Together, we deliver modern real estate platforms focused on
+              speed, usability, and client satisfaction.
+            </p>
+          </div>
+
+          {/* Right Side: Team Cards */}
+          <div className="lg:w-1/2 overflow-x-auto">
+            <div className="flex gap-6 min-w-[900px]">
+              {[
+                {
+                  name: "Neak Vanneath",
+                  title: "Developer & Designer",
+                  img: "https://randomuser.me/api/portraits/women/65.jpg",
+                  desc: "Specializes in UI systems, clean component architecture, and intuitive design experiences tailored for the Cambodian market.",
+                },
+                {
+                  name: "Dara Meas",
+                  title: "Product Manager",
+                  img: "https://randomuser.me/api/portraits/men/85.jpg",
+                  desc: "Drives roadmap strategy with agile execution and a focus on aligning features with market demand and user insights.",
+                },
+                {
+                  name: "Sreypov Kong",
+                  title: "Marketing Lead",
+                  img: "https://randomuser.me/api/portraits/women/70.jpg",
+                  desc: "Leads digital marketing initiatives, brand strategy, and customer outreach across channels to grow platform reach.",
+                },
+              ].map((member, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 w-[260px] bg-white p-5 rounded-xl text-center"
+                >
+                  <div className="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow">
+                    <Image
+                      src={member.img}
+                      alt={member.name}
+                      width={96}
+                      height={96}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-900">
+                    {member.name}
+                  </h4>
+                  <p className="text-sm text-gray-500 mb-2">{member.title}</p>
+                  <p className="text-sm text-gray-600">{member.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 px-6 text-center bg-blue-600 text-white">
+      <section className="py-20 px-6 text-center bg-gradient-to-r from-blue-700 to-blue-600 text-white">
         <h2 className="text-3xl font-bold mb-4">Let’s Work Together</h2>
         <p className="mb-6 max-w-xl mx-auto text-lg">
-          Ready to buy, sell, or rent? Reach out today and let one of our expert
-          agents assist you.
+          Whether you’re buying, selling, or exploring options—our experts are
+          ready to guide you.
         </p>
         <Link
           href="/Contact"
-          className="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition"
+          className="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-full shadow hover:bg-gray-100 transition"
         >
           Contact Us
         </Link>
